@@ -1,0 +1,4 @@
+# <=== Unnecessary files to submit. ===>
+.vscode
+.DS_Store
+libs/minilibx-linux
