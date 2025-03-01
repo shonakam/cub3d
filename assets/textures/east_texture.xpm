@@ -67,7 +67,7 @@ static char * north_texture_xpm[] = {
 "##########EEEEE#################################################################",
 "#......##.EEEEE##......##......##......##......##......##......##......##......#",
 "#......##.EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE.##......#",
-"##########EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE##########",
+"##########EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE##########",
 "...##.....EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE.....##...",
 "...##.....EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE.....##...",
 "################################################################################",
