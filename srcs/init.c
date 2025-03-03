@@ -7,8 +7,9 @@ void    init_game(t_game *game)
         return ;
     game->mlx =NULL;
     game->win = NULL;
+    game->txt = NULL;
     init_rendered(game);
-    game->map = NULL;
+    init_map(game);
     init_player(game);
     init_textures(game);
     game->floor_color = 0;
@@ -17,9 +18,6 @@ void    init_game(t_game *game)
 
 void    init_rendered(t_game *game)
 {
-    gmae->rendered = malloc(sizeof(t_image));
-    if (!game->rendered)
-        return ;
     game->rendered.img = NULL;
     game->rendered.addr = NULL;
     game->rendered.bpp = 0;

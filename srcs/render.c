@@ -4,6 +4,7 @@ void   set_game(t_game *game)
 {
     game->mlx = mlx_init();
     game->win = mlx_new_window(game->mlx, game->config.res.x, game->config.res.y, "cub3d");
+    set_txt(game);
     set_map(game);
     set_rendered(game);
     set_player(game);
@@ -92,4 +93,45 @@ void    set_textures_utils(t_texture *textures)
 {
     game->textures->img = mlx_xpm_file_to_image(game->mlx, game->config.textures[NORTH], &game->textures[NORTH].width, &game->textures[NORTH].height);
     game->textures->data = (int *)mlx_get_data_addr(game->textures[NORTH].img, &game->textures[NORTH].bpp, &game->textures[NORTH].line_length, &game->textures[NORTH].endian);
+}
+
+char **map_setting(t_game *game, char **text)
+{
+    size_t i;
+    size_t j;
+    size_t k;
+    char **map;
+
+    i = 0;
+    k = 0;
+    map = malloc(sizeof(char *) * (map_height(text) + 1));
+    if (!map)
+        return (NULL);
+    while (text[i])
+    {
+        j = 0;
+        while (text[i][j] == ' ')
+            j++;
+        if (text[i][j] == '1')
+        {
+            map[k] = malloc(sizeof(char) * (map_width(text) + 1));
+            if (!map[k])
+                return (free(map), NULL);
+            while (text[i][j])
+            {
+                map[k][j] = text[i][j];
+                j++;
+            }
+            while (j < map_width(text))
+            {
+                map[k][j] = ' ';
+                j++;
+            }
+            map[k][j] = '\0';
+            k++;
+        }
+        i++;
+    }
+    map[k] = NULL;
+    return (map);
 }

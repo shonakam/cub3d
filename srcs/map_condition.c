@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-int is_condition(char **map)
+int is_con_map(char **map)
 {
     if (map == NULL)
         return (0);
