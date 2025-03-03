@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: mfukui <mfukui@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/02/27 05:53:19 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/03 21:54:41 by mfukui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_vector	{
 
 typedef struct s_player {
 	t_vector	position;          /* プレイヤーの現在位置 */
-	t_vector	direction;         /* プレイヤーが向いている方向ベクトル */
+	t_vector	direction;        /* プレイヤーが向いている方向ベクトル */
 	t_vector	camera_plane;      /* カメラの視野平面 */
 	double		movement_speed;    /* プレイヤーの移動速度 */
 	double		rotation_speed;    /* プレイヤーの回転速度 */
@@ -51,16 +51,23 @@ typedef struct s_texture {
 	int		height;
 }				t_texture;
 
+typedef struct s_map {
+	char	**map;
+	size_t	width;
+	size_t	height;
+}				t_map;
+
 /* texture[0-4] = N, S, W, E */
 typedef struct s_game {
 	void		*mlx;
 	void		*win;
+	char		*txt;
 	t_image		rendered;
 	t_player	player;
-	char		**map;
+	t_map		*map;
 	t_texture	textures[4];
-	int			floor_color;
-	int			ceiling_color;
+	int			*floor_color;
+	int			*ceiling_color;
 }				t_game;
 
 #endif /* CUB3D_H */

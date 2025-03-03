@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_defines.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: mfukui <mfukui@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 02:36:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/02/23 02:41:32 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/01 21:23:10 by mfukui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,12 @@
 # define ERROR_INVALID_FILE       "Error: Invalid .cub file format.\n"
 # define ERROR_INVALID_IDENTIFIER "Error: Unknown identifier in .cub file.\n"
 # define ERROR_INVALID_RGB        "Error: Invalid RGB color values. Must be in range 0-255.\n"
+
+# define ERROR_MALLOC "Error\n Memory allocation failed.\n"
+
+#define NORTH 0
+#define SOUTH 1
+#define WEST 2
+#define EAST 3
 
 #endif /* CUB3D_DEFINES_H */
