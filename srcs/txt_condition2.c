@@ -6,6 +6,7 @@ int is_con_txt(char **txt)
         return (0);
     if (is_con_wall(txt) == 0)
         return (0);
+	
     return (1);
 }
 
@@ -75,59 +76,44 @@ int con_floor_ceiling(char **txt)
     }
     return (1);
 }
-
-int is_con_wall(char **txt)　 // 多分間違ってる
+int	check_wall_textures(char **txt)
 {
-    size_t i;
-    size_t j;
-    int signal;
+	size_t	i;
+	size_t	j;
+	int		flags;
 
-    i = 0;
-    signal = 0;
-    while (txt[i])
-    {
-        j = 0;
-        while (txt[i][j] == ' ')
-            j++;
-        if (ft_strcmp(txt[i][j], "NO") == 0)
-        {
-            j += 2;
-            while (txt[i][j] == ' ')
-                j++;
-            if (ft_strcmp(txt[i][j], "./path_to_the_north_texture") == 0)
-                signal++;
-            j++;
-        }
-        else if (ft_strcmp(txt[i][j], "SO") == 0)
-        {
-            j += 2;
-            while (txt[i][j] == ' ')
-                j++;
-            if (ft_strcmp(txt[i][j], "./path_to_the_south_texture") == 0)
-                signal++;
-            j++;
-        }
-        else if (ft_strcmp(txt[i][j], "WE") == 0)
-        {
-            j += 2;
-            while (txt[i][j] == ' ')
-                j++;
-            if (ft_strcmp(txt[i][j], "./path_to_the_west_texture") == 0)
-                signal++;
-            j++;
-        }
-        else if (ft_strcmp(txt[i][j], "EA") == 0)
-        {
-            j += 2;
-            while (txt[i][j] == ' ')
-                j++;
-            if (ft_strcmp(txt[i][j], "./path_to_the_east_texture") == 0)
-                signal++;
-            j++;
-        }
-        i++;
-    }
-    if (signal != 4)
-        return (0);
-    return (1);
+	i = 0;
+	flags = 0;
+	while (txt[i])
+	{
+		j = 0;
+		while (txt[i][j] == ' ')
+			j++;
+		if (ft_strncmp(txt[i] + j, "NO", 2) == 0)
+		{
+			if (flags & 1)
+				return (0);
+			flags |= 1;
+		}
+		else if (ft_strncmp(txt[i] + j, "SO", 2) == 0)
+		{
+			if (flags & 2)
+				return (0);
+			flags |= 2;
+		}
+		else if (ft_strncmp(txt[i] + j, "WE", 2) == 0)
+		{
+			if (flags & 4)
+				return (0);
+			flags |= 4;
+		}
+		else if (ft_strncmp(txt[i] + j, "EA", 2) == 0)
+		{
+			if (flags & 8)
+				return (0);
+			flags |= 8;
+		}
+		i++;
+	}
+	return (flags == 15);
 }
