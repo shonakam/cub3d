@@ -78,7 +78,7 @@ int prohibited_c(char **map)
 		j =	0;
 		while (map[i][j])
 		{
-			if (map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'S' map[i][j] != '0' && map[i][j] != '1' && map[i][j] != ' ')
+			if (map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'S' && map[i][j] != '0' && map[i][j] != '1' && map[i][j] != ' ')
 				return (error_print(INVALID_MAP_CHARACTER), 0);
 			j++;
 		}
