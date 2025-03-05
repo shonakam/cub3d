@@ -6,7 +6,7 @@
 /*   By: mfukui <mfukui@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/06 03:18:56 by mfukui           ###   ########.fr       */
+/*   Updated: 2025/03/06 03:37:34 by mfukui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,11 @@ void	free_game(t_game **game);
 void	set_game(t_game *game, const char *file_path);
 void	set_txt(t_game *game, const char *file_path);   
 void	set_map(t_game *game);
-void	set_rendered(t_game *game);
+// void	set_rendered(t_game *game);
 void	set_player(t_game *game);
 void	set_player_utils(t_game *game, char **map, char direction);
-void	set_textures(t_game *game);
-void	set_textures_utils(t_texture *textures);
+// void	set_textures(t_game *game);
+// void	set_textures_utils(t_texture *textures);
 char	**map_setting(t_game *game, char **text);
 void	set_ceil_floor(t_game *game);
 void	set_floor_color(t_game *game);
