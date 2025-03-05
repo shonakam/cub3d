@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/05 04:15:59 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/06 02:07:20 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ typedef struct s_vector	{
 
 typedef struct s_player {
 	t_vector	position;          /* プレイヤーの現在位置 */
-	t_vector	direction;         /* プレイヤーが向いている方向ベクトル */
+	t_vector	direction;        /* プレイヤーが向いている方向ベクトル */
 	t_vector	camera_plane;      /* カメラの視野平面 */
 	double		movement_speed;    /* プレイヤーの移動速度 */
 	double		rotation_speed;    /* プレイヤーの回転速度 */
 }				t_player;
 
-// typedef struct s_image {
-// 	void	*img;
-// 	char	*addr;
-// 	int		bpp;
-// 	int		line_length;
-// 	int		endian;
-// }				t_image;
+typedef struct s_image {
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}				t_image;
 
 typedef struct s_texture {
 	void	*img;
@@ -50,18 +50,24 @@ typedef struct s_texture {
 	int		height;
 }				t_texture;
 
+typedef struct s_map {
+	char	**map;
+	size_t	width;
+	size_t	height;
+}				t_map;
+
 /* texture[0-4] = N, S, W, E */
 typedef struct s_cub3d {
 	void		*mlx;
 	void		*win;
-	// t_image		rendered;
-	// t_player	player;
-	char		**map;
+	char		*txt;
+	t_image		rendered;
+	t_player	player;
+	t_map		*map;
 	t_texture	textures[4];
-	int			floor_color;
-	int			ceiling_color;
+	int			*floor_color;
+	int			*ceiling_color;
 }				t_cub3d;
-
 
 t_cub3d		*initialize_cub(void);
 int			set_coredata(t_cub3d *cub);
