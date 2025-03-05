@@ -6,14 +6,14 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 11:15:51 by shonakam          #+#    #+#             */
-/*   Updated: 2025/02/27 04:23:32 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/05 02:47:11 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft.h"
+# include "../libft.h"
 
 void		set_hex_digits(char format, char *hex_digits);
 ssize_t		safe_putstr(const char *s, int fd);

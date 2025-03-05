@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main_support.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 15:58:05 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/05 02:47:23 by shonakam         ###   ########.fr       */
+/*   Created: 2025/03/05 02:29:09 by shonakam          #+#    #+#             */
+/*   Updated: 2025/03/05 02:58:19 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "includes/cub3d.h"
 
-# include "../libft.h"
+int	validate_extension(const char *file)
+{
+	const char	*ext;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
-
-char	*get_next_line(int fd);
-
-#endif
-
+	if (!file)
+		return (0);
+	ext = ft_strrchr(file, '.');
+	if (!ext || ft_strncmp(ext, ".cub", 5) != 0)
+		return (0);
+	return (1);
+}

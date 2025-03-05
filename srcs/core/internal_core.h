@@ -1,25 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   internal_core.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 15:58:05 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/05 02:47:23 by shonakam         ###   ########.fr       */
+/*   Created: 2025/03/05 04:43:39 by shonakam          #+#    #+#             */
+/*   Updated: 2025/03/05 04:43:40 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-
-# include "../libft.h"
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
-
-char	*get_next_line(int fd);
-
-#endif
 

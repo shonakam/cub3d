@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 15:58:05 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/05 02:47:23 by shonakam         ###   ########.fr       */
+/*   Created: 2025/03/05 02:12:30 by shonakam          #+#    #+#             */
+/*   Updated: 2025/03/05 04:58:36 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "includes/cub3d.h"
 
-# include "../libft.h"
+int	main(int ac, char **av)
+{
+	t_cub3d	*cub;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
-
-char	*get_next_line(int fd);
-
-#endif
-
+	cub = NULL;
+	if (ac != 2 || !validate_extension(av[1]))
+		return (EXIT_FAILURE);
+	cub = initialize_cub();
+	if (!cub)
+		return (EXIT_FAILURE);
+	// if (!set_coredata(cub))
+	// 	return (EXIT_FAILURE);
+	// hadle_game(&cub);
+	return (EXIT_SUCCESS);
+}

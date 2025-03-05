@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   set.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 15:58:05 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/05 02:47:23 by shonakam         ###   ########.fr       */
+/*   Created: 2025/03/05 04:07:44 by shonakam          #+#    #+#             */
+/*   Updated: 2025/03/05 04:10:36 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "includes/cub3d.h"
 
-# include "../libft.h"
+int	set_coredata(t_cub3d *cub)
+{
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
-
-char	*get_next_line(int fd);
-
-#endif
-
+}
