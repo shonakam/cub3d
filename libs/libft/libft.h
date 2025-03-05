@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 22:29:27 by shonakam          #+#    #+#             */
-/*   Updated: 2025/02/27 05:09:46 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/06 03:27:48 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ int			ft_is_digit(char c);
 int			ft_is_whitespace(char c);
 long long	ft_atoll(const char *s);
 int			ft_is_plus_minus(char c);
+int			ft_rgbtoi(int r, int g, int b);
 
 #endif

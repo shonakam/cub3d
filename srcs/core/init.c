@@ -6,36 +6,36 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:53:18 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/05 04:58:48 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/06 03:57:11 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 
-static void	init_textures_map(t_cub3d *cub)
-{
-	int		i;
+// static void	init_textures_map(t_cub3d *cub)
+// {
+// 	int		i;
 
-	i = 0;
-	while (i < 4)
-	{
-		cub->textures[i].img = NULL;
-		i++;
-	}
-	cub->map = NULL;
-}
+// 	i = 0;
+// 	while (i < 4)
+// 	{
+// 		cub->textures[i].img = NULL;
+// 		i++;
+// 	}
+// 	cub->map = NULL;
+// }
 
-static void	*init_mlx(t_cub3d *cub)
-{
-	cub->mlx = mlx_init();
-	if (!cub->mlx)
-		return (perror("Error: Failed to initialize MiniLibX"), NULL);
-	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
-	if (!cub->win)
-		return (perror("Error: Failed to create window"), NULL);
-	// cub->rendered.img = NULL;
-	return (cub->mlx);
-}
+// static void	*init_mlx(t_cub3d *cub)
+// {
+// 	cub->mlx = mlx_init();
+// 	if (!cub->mlx)
+// 		return (perror("Error: Failed to initialize MiniLibX"), NULL);
+// 	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
+// 	if (!cub->win)
+// 		return (perror("Error: Failed to create window"), NULL);
+// 	// cub->rendered.img = NULL;
+// 	return (cub->mlx);
+// }
 
 // static void init_position_direction(t_cub3d *cub)
 // {
@@ -76,11 +76,10 @@ t_cub3d	*initialize_cub(void)
 	}
 	cub->mlx = NULL;
 	cub->win = NULL;
-	cub->map = NULL;
 	cub->floor_color = -1;
 	cub->ceiling_color = -1;
 	i = 0;
 	while (i < 4)
-		cub->textures[i].img = NULL;
+		cub->textures[i++].img = NULL;
 	return (cub);
 }
