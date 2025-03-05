@@ -1,120 +1,58 @@
 #include "../includes/cub3d.h"
 
-int is_con_txt(char **txt)
+int is_con_txt(t_game *game)
 {
-    if (con_floor_ceiling(txt) == 0)
-        return (0);
-    if (is_con_wall(txt) == 0)
-        return (0);
-	
-    return (1);
-}
+	int	signal;
 
-int *parse_rgb(char *str)
-{
-    char **rgb;
-    int *colors;
-
-    colors = malloc(sizeof(int) * 3);
-    if (!colors)
-        return (NULL);
-    rgb = ft_split(str, ',');
-    if (!rgb)
-        return (free(colors), NULL);
-    
-    colors[0] = ft_atoi(rgb[0]);
-    colors[1] = ft_atoi(rgb[1]);
-    colors[2] = ft_atoi(rgb[2]);
-
-    free(rgb);
-    return (colors);
-}
-
-int con_floor_ceiling(char **txt)
-{
-    size_t i;
-    size_t j;
-    int *tmp_f;
-    int *tmp_c;
-
-    i = 0;
-    tmp_c = NULL;
-    tmp_f = NULL;
-    while (txt[i])
-    {
-        j = 0;
-        while (txt[i][j] == ' ')
-            j++;
-        if (txt[i][j] == 'F')
-        {
-            j++;
-            while (txt[i][j] == ' ')
-                j++;
-            tmp_f = parse_rgb(&(txt[i][j]));
-        }
-        else if (txt[i][j] == 'C')
-        {
-            j++;
-            while (txt[i][j] == ' ')
-                j++;
-            tmp_c = parse_rgb(&(txt[i][j]));
-        }
-        i++;
-    }
-    if (!tmp_f && !tmp_c)
-        return (0);
-    else if (!tmp_f)
-        return (free(tmp_c), 0);
-    else if (!tmp_c)
-        return (free(tmp_f), 0);
-    if ((tmp_f[0] < 0 || tmp_f[0] > 255 || tmp_f[1] < 0 || tmp_f[1] > 255 || tmp_f[2] < 0 || tmp_f[2] > 255)) || \
-        (tmp_c[0] < 0 || tmp_c[0] > 255 || tmp_c[1] < 0 || tmp_c[1] > 255 || tmp_c[2] < 0 || tmp_c[2] > 255)))
-    {
-        free(tmp_f);
-        free(tmp_c);
-        return (0);
-    }
-    return (1);
+	signal = 0;
+	if (game->txt == NULL)
+		return (0);
+	if (check_wall_textures(game->txt) == 0)
+		signal++;
+	if (signal == 0)
+		return (1);
+	return (0);
 }
 
 int	check_wall_textures(char **txt)
 {
-	size_t	i;
-	size_t	j;
-	int		flags;
+	int signal;
 
+	signal = 0;
+	if (has_one_wall_info(txt, "NO") == 1)
+		signal++;
+	if (has_one_wall_info(txt, "SO") == 1)
+		signal++;
+	if (has_one_wall_info(txt, "WE") == 1)
+		signal++;
+	if (has_one_wall_info(txt, "EA") == 1)
+		signal++;
+	if (has_one_wall_info(txt, "F") == 1)
+		signal++;
+	if (has_one_wall_info(txt, "C") == 1)
+		signal++;
+	if (signal == 6)
+		return (1);
+	return (0);
+}
+
+int	has_one_wall_info(char **txt, char *str)
+{
+	size_t i;
+	int signal;
+
+	signal = 0;
 	i = 0;
-	flags = 0;
 	while (txt[i])
 	{
-		j = 0;
-		while (txt[i][j] == ' ')
-			j++;
-		if (ft_strncmp(txt[i] + j, "NO", 2) == 0)
-		{
-			if (flags & 1)
-				return (0);
-			flags |= 1;
-		}
-		else if (ft_strncmp(txt[i] + j, "SO", 2) == 0)
-		{
-			if (flags & 2)
-				return (0);
-			flags |= 2;
-		}
-		else if (ft_strncmp(txt[i] + j, "WE", 2) == 0)
-		{
-			if (flags & 4)
-				return (0);
-			flags |= 4;
-		}
-		else if (ft_strncmp(txt[i] + j, "EA", 2) == 0)
-		{
-			if (flags & 8)
-				return (0);
-			flags |= 8;
-		}
+		if (ft_strnstr(txt[i], str, 2))
+			signal++;
 		i++;
 	}
-	return (flags == 15);
+	if (signal == 1)
+		return (1);
+	else if (signal > 1)
+		return (printf("Error\nThere are more than one %s\n", str), 2);
+	else
+		return (printf("Error\nThere is no %s\n", str), 0);
 }

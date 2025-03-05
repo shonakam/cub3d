@@ -1,19 +1,24 @@
 #include "../includes/cub3d.h"
 
-int is_con_map(char **map)
+int	is_con_map(char **map)
 {
-    if (map == NULL)
-        return (0);
+	int signal;
+
+	signal = 0;
+	if (map == NULL)
+		return (0);
 	if (has_one_player(map)	!= 1)
-		return (0);
+		signal++;
 	if (surround_wall(map) == 0)
-		return (0);
+		signal++;
 	if (prohibited_c(map) == 0)
-		return (0);
-    return (1);
+		signal++;
+	if (signal == 0)
+		return (1);
+	return (0);
 }
 
-int has_one_player(char **map)
+int	has_one_player(char **map)
 {
 	size_t	i;
 	int		signal;
@@ -29,9 +34,9 @@ int has_one_player(char **map)
 	if (signal == 1)
 		return (1);
 	else if (signal > 1)
-		return (printf("Error\nThere are more than one player\n"), 2);
+		return (error_print(MORE_THAN_ONE_PLAYER), 2);
 	else
-		return (printf("Error\nThere is no player\n"), 0);
+		return (error_print(NO_PLAYER), 0);
 }
 
 int surround_wall(char **map)
@@ -42,33 +47,22 @@ int surround_wall(char **map)
 	i = 0;
 	while (map[i])
 	{
-		if (map[i] == '0')
-			return (0);
-		i++;
-	}
-	i = 1;
-	while (map[i])
-	{
 		j = 0;
-		while (map[i + 1][j])
+		while (map[i][j])
 		{
-			if (map[i][j] == '0' && map[i][j + 1] == ' ')
-				return (0);
-			if (map[i][j] == '0' && map[i][j - 1] == ' ')
-				return (0);
-			if (map[i][j] == '0' && map[i + 1][j] == ' ')
-				return (0);
-			if (map[i][j] == '0' && map[i - 1][j] == ' ')
-				return (0);
+			if (map[0][j] != '1' && map[0][j] != ' ')
+				return (error_print(INVALID_MAP_SURROUND), 0);
+			if (map[i][j + 1] && (map[i][j] != '1' && map[i][j] != ' ') && (map[i][j + 1] == ' ' || map[i][j + 1] == '\0'))
+				return (error_print(INVALID_MAP_SURROUND), 0);
+			if (j > 0 && (map[i][j] != '1' && map[i][j] != ' ') && (map[i][j - 1] == ' ' || map[i][j - 1] == '\0'))
+				return (error_print(INVALID_MAP_SURROUND), 0);
+			if (map[i + 1] && (map[i][j] != '1' && map[i][j] != ' ')  && (map[i + 1][j] == ' ' || map[i + 1][j] == '\0'))
+				return (error_print(INVALID_MAP_SURROUND), 0);
+			if (i > 0 && (map[i][j] != '1' && map[i][j] != ' ') && (map[i - 1][j] == ' ' || map[i - 1][j] == '\0'))
+				return (error_print(INVALID_MAP_SURROUND), 0);
 			j++;
-		}
+        }
 		i++;
-	}
-	while (map[i][j])
-	{
-		if (map[i][j] == '0')
-			return (0);
-		j++;
 	}
 	return (1);
 }
@@ -85,7 +79,7 @@ int prohibited_c(char **map)
 		while (map[i][j])
 		{
 			if (map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'S' map[i][j] != '0' && map[i][j] != '1' && map[i][j] != ' ')
-				return (0);
+				return (error_print(INVALID_MAP_CHARACTER), 0);
 			j++;
 		}
 		i++;

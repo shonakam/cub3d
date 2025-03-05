@@ -1,113 +1,137 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 02:03:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/06 02:06:16 by shonakam         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/cub3d.h"
 
-void   set_cub(t_cub3d *cub)
+void	set_game(t_game *game, const char *file_path)
 {
-    cub->mlx = mlx_init();
-    cub->win = mlx_new_window(cub->mlx, cub->config.res.x, cub->config.res.y, "cub3d");
-    set_txt(cub);
-    set_map(cub);
-    set_rendered(cub);
-    set_player(cub);
-    set_textures(cub);
-    cub->floor_color = get_floor_color(cub->txt);
-    cub->ceiling_color = get_ceiling_color(cub->txt);
+	// game->mlx = mlx_init();
+	// game->win = mlx_new_window(game->mlx, game->config.res.x, game->config.res.y, "cub3d");
+    //途中でerrorが出た場合の処理がわからないため、一旦コメントアウト
+	set_txt(game, file_path);
+	if (!is_con_txt(game->txt))
+		return (error_print(INVALID_TXT), exit(1));
+	set_map(game);
+	if (!is_con_map(game->map->map))
+		return (error_print(INVALID_MAP), exit(1));
+	// set_rendered(game);
+	set_player(game);
+	set_textures(game);
+	set_ceil_floor(game);
 }
 
-void   set_map(t_cub3d *cub)
+void	set_txt(t_game *game, const char *file_path)
 {
-    cub->map->width = map_width(cub->txt);
-    cub->map->height = map_height(cub->txt);
-    cub->map->map = map_setting(cub->txt);
+	int		file;
+	char	*line;
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	file = open(file_path, O_RDONLY);
+	if (file == -1)
+		return (error_print(OPEN_ERROR), exit(1));
+	game->map = malloc(sizeof(char *) * game->map->height + 1);
+	if (!game->map)
+		return (error_print(ALLOCATE_ERROR), close(file), exit(1));
+	while ((line = get_next_line(file)) != NULL)
+	{
+		game->txt[i++] = line;
+		len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			line[len - 1] = '\0';
+	}
+	game->txt[i] = NULL;
+	close(file);
 }
 
-void    set_rendered(t_cub3d *cub)
+void	set_map(t_game *game)
 {
-    cub->rendered.img = mlx_new_image(cub->mlx, cub->config.res.x, cub->config.res.y);
-    cub->rendered.addr = mlx_get_data_addr(cub->rendered.img, &cub->rendered.bpp, &cub->rendered.line_length, &cub->rendered.endian);
-    cub->rendered.bpp = 24;
+	game->map->width = map_width(game->txt);
+	game->map->height = map_height(game->txt);
+	if (game->map->width == 0 || game->map->height == 0)
+		return (error_print(INVALID_MAP_SIZE), free_game(game));
+	game->map->map = map_setting(game, game->txt);
+}
+
+// void    set_rendered(t_game *game)
+// {
+//     game->rendered.img = mlx_new_image(game->mlx, game->config.res.x, game->config.res.y);
+//     game->rendered.addr = mlx_get_data_addr(game->rendered.img, &game->rendered.bpp, &game->rendered.line_length, &game->rendered.endian);
+//     game->rendered.bpp = 24;
     
-}
+// }
 
-void    set_player(t_cub3d *cub)
+void	set_player(t_game *game)
 {
-    int	x;
-	int	y;
+	int		x;
+	int		y;
+	char	**map;
 
-    y = 0;
-    while (cub->map[y])
+	y = 0;
+	map = game->map->map;
+	while (map[y])
 	{
 		x = 0;
-		while (cub->map[y][x])
+		while (map[y][x])
 		{
-			if (cub->map[y][x] == 'N')
+			if (map[y][x] == 'N' || map[y][x] == 'E' || map[y][x] == 'W' || map[y][x] == 'S')
 			{
-				cub->p_x = x;
-				cub->p_y = y;
-                cub->player.direction.x = -1;
-                cub->player.direction.y = 0;
+				game->player->position.x = x;
+				game->player->position.y = y;
+				game->start_position.x = x;
+				game->start_position.y = y;
+				set_player_utils(game, map, map[y][x]);
 			}
-			else if (cub->map[y][x] == 'E')
-			{
-				cub->p_x = x;
-				cub->p_y = y;
-                cub->player.direction.x = 0;
-                cub->player.direction.y = 1;
-			}
-			else if (cub->map[y][x] == 'W')
-			{
-				cub->p_x = x;
-				cub->p_y = y;
-                cub->player.direction.x = 0;
-                cub->player.direction.y = -1;
-			}
-			else if (cub->map[y][x] == 'S')
-			{
-				cub->p_x = x;
-				cub->p_y = y;
-                cub->player.direction.x = 1;
-                cub->player.direction.y = 0;
-			}
-			x++;
 		}
 		y++;
 	}
-    cub->player.camera_plane.x = 0;
-    cub->player.camera_plane.y = 0;
-    cub->player.movement_speed = PLAYER_SPEED;
-    cub->player.rotation_speed = ROTATION_SPEED;
+	game->player->camera_plane.x = 0;
+	game->player->camera_plane.y = 0;
+	game->player->movement_speed = PLAYER_SPEED;
+	game->player->rotation_speed = ROTATION_SPEED;
 }
 
-void    set_textures(t_cub3d *cub)
+void set_player_utils(t_game *game, char **map, char direction)
 {
-    int i;
-
-    i = 0;
-    while (i < 4)
-    {
-        sett_textures_utils(cub->textures[i]);
-        i++;
-    }
+	if (direction == 'N')
+	{
+		game->player->direction.x = 0;
+		game->player->direction.y = -1;
+	}
+	else if (direction == 'E')
+	{
+		game->player->direction.x = 1;
+		game->player->direction.y = 0;
+	}
+	else if (direction == 'W')
+	{
+		game->player->direction.x = -1;
+		game->player->direction.y = 0;
+	}
+	else if (direction == 'S')
+	{
+		game->player->direction.x = 0;
+		game->player->direction.y = 1;
+	}
 }
 
-void    set_textures_utils(t_texture *textures)
-{
-    cub->textures->img = mlx_xpm_file_to_image(cub->mlx, cub->config.textures[NORTH], &cub->textures[NORTH].width, &cub->textures[NORTH].height);
-    cub->textures->data = (int *)mlx_get_data_addr(cub->textures[NORTH].img, &cub->textures[NORTH].bpp, &cub->textures[NORTH].line_length, &cub->textures[NORTH].endian);
-}
+// void    set_textures(t_game *game)
+// {
+//     int i;
 
-char **map_setting(t_cub3d *cub, char **text)
+//     i = 0;
+//     while (i < 4)
+//     {
+//         sett_textures_utils(game->textures[i]);
+//         i++;
+//     }
+// }
+
+// void    set_textures_utils(t_texture *textures)
+// {
+//     game->textures->img = mlx_xpm_file_to_image(game->mlx, game->config.textures[NORTH], &game->textures[NORTH].width, &game->textures[NORTH].height);
+//     game->textures->data = (int *)mlx_get_data_addr(game->textures[NORTH].img, &game->textures[NORTH].bpp, &game->textures[NORTH].line_length, &game->textures[NORTH].endian);
+// }
+
+char **map_setting(t_game *game, char **text)
 {
     size_t i;
     size_t j;
@@ -118,7 +142,7 @@ char **map_setting(t_cub3d *cub, char **text)
     k = 0;
     map = malloc(sizeof(char *) * (map_height(text) + 1));
     if (!map)
-        return (NULL);
+        return (error_print(ALLOCATE_ERROR), free_game(game), exit(1), NULL);
     while (text[i])
     {
         j = 0;
@@ -128,7 +152,7 @@ char **map_setting(t_cub3d *cub, char **text)
         {
             map[k] = malloc(sizeof(char) * (map_width(text) + 1));
             if (!map[k])
-                return (free(map), NULL);
+                return (error_print(ALLOCATE_ERROR), free_game(game), exit(1), NULL);
             while (text[i][j])
             {
                 map[k][j] = text[i][j];
@@ -146,4 +170,96 @@ char **map_setting(t_cub3d *cub, char **text)
     }
     map[k] = NULL;
     return (map);
+}
+
+void    set_ceil_floor(t_game *game)
+{
+    set_floor_color(game);
+    set_ceiling_color(game);
+    if (!game->floor_color || !game->ceiling_color)
+        return (free_game(&game), exit(1), 0);
+}
+
+void    set_floor_color(t_game *game)
+{
+    size_t i;
+    size_t j;
+    int *tmp_f;
+
+    i = 0;
+    tmp_f = NULL;
+    while (game->txt[i])
+    {
+        j = 0;
+        while (game->txt[i][j] == ' ')
+            j++;
+        if (game->txt[i][j] == 'F')
+        {
+            j++;
+            while (game->txt[i][j] == ' ')
+                j++;
+            tmp_f = parse_rgb(&(game->txt[i][j]));
+			if (!tmp_f)
+				return (free_game(&game), exit(1), 0);
+        }
+        i++;
+    }
+    if ((tmp_f[0] < 0 || tmp_f[0] > 255 || tmp_f[1] < 0 || tmp_f[1] > 255 || tmp_f[2] < 0 || tmp_f[2] > 255))
+    {
+        free(tmp_f);
+		error_print(INVALID_COLOR);
+        return ;
+    }
+    game->floor_color = tmp_f[0] << 16 | tmp_f[1] << 8 | tmp_f[2];
+}
+
+void    set_ceiling_color(t_game *game)
+{
+    size_t i;
+    size_t j;
+    int *tmp_c;
+
+    i = 0;
+    tmp_c = NULL;
+    while (game->txt[i])
+    {
+        j = 0;
+        while (game->txt[i][j] == ' ')
+            j++;
+        if (game->txt[i][j] == 'C')
+        {
+            j++;
+            while (game->txt[i][j] == ' ')
+                j++;
+            tmp_c = parse_rgb(&(game->txt[i][j]));
+			if (!tmp_c)
+				return (free_game(&game), exit(1), 0);
+        }
+        i++;
+    }
+    if ((tmp_c[0] < 0 || tmp_c[0] > 255 || tmp_c[1] < 0 || tmp_c[1] > 255 || tmp_c[2] < 0 || tmp_c[2] > 255))
+    {
+        free(tmp_c);
+		error_print(INVALID_COLOR);
+        return ;
+    }
+    game->ceiling_color = tmp_c[0] << 16 | tmp_c[1] << 8 | tmp_c[2];
+}
+
+int	*parse_rgb(char *str)
+{
+	char **rgb;
+	int *colors;
+
+	colors = malloc(sizeof(int) * 3);
+	if (!colors)
+		return (error_print(ALLOCATE_ERROR), NULL);
+	rgb = ft_split(str, ',');
+	if (!rgb)
+		return (free(colors), error_print(ALLOCATE_ERROR), NULL);
+	colors[0] = ft_atoi(rgb[0]);
+	colors[1] = ft_atoi(rgb[1]);
+	colors[2] = ft_atoi(rgb[2]);
+	free(rgb);
+	return (colors);
 }
