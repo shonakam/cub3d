@@ -6,7 +6,7 @@
 /*   By: mfukui <mfukui@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 02:36:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/01 21:23:10 by mfukui           ###   ########.fr       */
+/*   Updated: 2025/03/08 07:38:07 by mfukui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,8 @@
 #define SOUTH 1
 #define WEST 2
 #define EAST 3
+
+#define MAP_MAX_WIDTH 200
+#define MAP_MAX_HEIGHT 200
 
 #endif /* CUB3D_DEFINES_H */

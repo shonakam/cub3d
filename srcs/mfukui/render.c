@@ -203,7 +203,7 @@ void    set_floor_color(t_game *game)
         }
         i++;
     }
-    if ((tmp_f[0] < 0 || tmp_f[0] > 255 || tmp_f[1] < 0 || tmp_f[1] > 255 || tmp_f[2] < 0 || tmp_f[2] > 255))
+    if ((tmp_f[0] < COLOR_MIN || tmp_f[0] > COLOR_MAX || tmp_f[1] < COLOR_MIN || tmp_f[1] > COLOR_MAX || tmp_f[2] < COLOR_MIN || tmp_f[2] > COLOR_MAX))
     {
         free(tmp_f);
 		error_print(INVALID_COLOR);
@@ -236,7 +236,7 @@ void    set_ceiling_color(t_game *game)
         }
         i++;
     }
-    if ((tmp_c[0] < 0 || tmp_c[0] > 255 || tmp_c[1] < 0 || tmp_c[1] > 255 || tmp_c[2] < 0 || tmp_c[2] > 255))
+    if ((tmp_c[0] < COLOR_MIN || tmp_c[0] > COLOR_MAX || tmp_c[1] < COLOR_MIN || tmp_c[1] > COLOR_MAX || tmp_c[2] < COLOR_MIN || tmp_c[2] > COLOR_MAX))
     {
         free(tmp_c);
 		error_print(INVALID_COLOR);
