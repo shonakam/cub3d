@@ -1,20 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core_internal.h                                    :+:      :+:    :+:   */
+/*   ft_controller.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 04:43:39 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 08:40:33 by shonakam         ###   ########.fr       */
+/*   Created: 2025/03/08 08:16:42 by shonakam          #+#    #+#             */
+/*   Updated: 2025/03/08 08:53:24 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CORE_INTERNAL_H
-# define CORE_INTERNAL_H
-
-# include "includes/cub3d.h"
+#include "controller_internal.h"
 
 void	setup_cub(t_cub3d *cub);
 
-#endif /* CORE_INTERNAL_H */
+int	ft_controller(int key, void *param)
+{
+	t_cub3d	*cub;
+
+	cub = (t_cub3d *)param;
+	printf("key: %d\n", key);
+	return (0);
+}
+
+int main(void)
+{
+	t_cub3d *cub = initialize_cub();
+
+
+	setup_cub(cub);
+	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
+
+	mlx_key_hook(cub->win, ft_controller, cub);
+	mlx_loop(cub->mlx);
+	return (0);
+}

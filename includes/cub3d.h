@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/07 14:19:52 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 08:41:18 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,28 +68,20 @@ typedef struct s_cub3d {
 	t_texture	textures[4];
 	int			floor_color;
 	int			ceiling_color;
-	double		last_rotation_time; //test
 }				t_cub3d;
 
 t_cub3d		*initialize_cub(void);
 int			set_coredata(t_cub3d *cub);
 
 /* render() - Responsible for managing overall rendering
- * - Draws the ceiling (C) and floor (F)
- * - Calls raycaster() to render 3D walls
- * - Draws the minimap (if applicable)
- * - Finally, updates the window using mlx_put_image_to_window()
- */
-void ft_render(t_cub3d *cub);
+* - Draws the ceiling (C) and floor (F)
+* - Calls raycaster() to render 3D walls
+* - Draws the minimap (if applicable)
+* - Finally, updates the window using mlx_put_image_to_window()
+*/
+void		ft_render(t_cub3d *cub);
 
-/* raycaster() - Responsible for raycasting and wall rendering
- * - Casts rays from the player's viewpoint (cub->player)
- * - Iterates until a ray hits a wall ('1')
- * - Calculates the wall distance (perpWallDist) and determines wall height (lineHeight)
- * - Uses mlx_pixel_put() or mlx_new_image() to draw walls
- */
-void ft_raycaster(t_cub3d *cub);
-
+void		free_cub(t_cub3d *cub);
 /* <=== SUPPORT ===> */
 int			validate_extension(const char *file);
 
