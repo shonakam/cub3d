@@ -3,3 +3,6 @@
 .DS_Store
 libs/minilibx
 *.dSYM
+objs
+practice
+cub3D

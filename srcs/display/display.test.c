@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 02:20:48 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/07 14:38:54 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:38:55 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,7 @@ void	rotate_player(t_player *player, double angle)
 
 void	update_rotation(t_cub3d *cub)
 {
-	// **現在の時間を取得（秒単位）**
 	double current_time = (double)clock() / CLOCKS_PER_SEC;
-
-	// **2秒経過したら回転**
 	if (current_time - cub->last_rotation_time >= 0.5)
 	{
 		rotate_player(&cub->player, 10.0); // **10度ずつ右回転**
@@ -141,7 +138,6 @@ int game_loop(t_cub3d *cub)
 	ft_render(cub);       // **画面を更新**
 	return (0);
 }
-
 
 int main(void)
 {

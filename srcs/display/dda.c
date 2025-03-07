@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:56:08 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/07 14:30:27 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:38:30 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,24 @@ static void	step_dda(t_cub3d *cub, t_ray *ray)
 	}
 }
 
+static void	prevent_zero_division(double *value)
+{
+	if (fabs(*value) < 1e-6)
+	{
+		if (*value < 0)
+			*value = -1e-6;
+		else
+			*value = 1e-6;
+	}
+}
+
 static void	calculate_wall_distance(t_player *p, t_ray *ray)
 {
 	double	numerator;
 	double	denominator;
 
-	if (fabs(ray->direction.x) < 1e-6)
-		ray->direction.x = (ray->direction.x < 0) ? -1e-6 : 1e-6;
-	if (fabs(ray->direction.y) < 1e-6)
-		ray->direction.y = (ray->direction.y < 0) ? -1e-6 : 1e-6;
+	prevent_zero_division(&ray->direction.x);
+	prevent_zero_division(&ray->direction.y);
 	if (ray->side == 0)
 	{
 		numerator = ray->map.x - p->position.x + (1 - ray->step.x) / 2;
@@ -54,7 +63,6 @@ static void	calculate_wall_distance(t_player *p, t_ray *ray)
 	}
 	ray->wall_hit_distance = numerator / denominator;
 }
-
 
 void	perform_dda(t_cub3d *cub, t_ray *ray)
 {
