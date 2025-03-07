@@ -6,7 +6,7 @@
 #    By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/05 00:08:31 by shonakam          #+#    #+#              #
-#    Updated: 2025/03/06 04:28:09 by shonakam         ###   ########.fr        #
+#    Updated: 2025/03/07 13:03:59 by shonakam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,10 +53,14 @@ re: fclean all
 debug:
 	@$(CC) $(CFLAGS) -g -fsanitize=address $(OBJS) $(LIBS) $(X11_FLAGS) -o $(NAME)
 
-TEST := ./srcs/display/display.test.c ./srcs/display/ft_raycaster.c ./srcs/display/ft_render.c ./srcs/core/init.c 
+TEST := $(shell find srcs/display -type f -name "*.c") ./srcs/core/init.c
 test:
 	@$(MAKE) -C libs/libft
 	@$(MAKE) -C libs/minilibx
 	@$(CC) $(CFLAGS) -g -fsanitize=address $(TEST) $(LIBS) $(X11_FLAGS) -o $(NAME)
+
+P := ./practice/pic_buffer.c
+p:
+	@$(CC) $(CFLAGS) -g -fsanitize=address $(P) $(LIBS) $(X11_FLAGS) -o prac
 
 .PHONY: all clean fclean re

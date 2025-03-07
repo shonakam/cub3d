@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/06 04:36:58 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/07 14:19:52 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,29 @@
 # include "cub3d_defines.h"
 
 /* coordinate */
-typedef struct s_vector	{
+typedef struct s_vec_d	{
 	double	x;
 	double	y;
-}				t_vector;
+}				t_vec_d;
 
 typedef struct s_player {
-	t_vector	position;          /* プレイヤーの現在位置 */
-	t_vector	direction;        /* プレイヤーが向いている方向ベクトル */
-	t_vector	camera_plane;      /* カメラの視野平面 */
-	double		movement_speed;    /* プレイヤーの移動速度 */
-	double		rotation_speed;    /* プレイヤーの回転速度 */
+	t_vec_d	position;
+	t_vec_d	direction;
+	t_vec_d	plane;
+	double	movement_speed;
+	double	rotation_speed;
 }				t_player;
 
 typedef struct s_image {
-	void	*img;
-	char	*addr;
+	void	*ptr;
+	char	*data;
 	int		bpp;
 	int		line_length;
 	int		endian;
 }				t_image;
 
 typedef struct s_texture {
-	void	*img;
-	int		*data;
+	t_image	image;
 	int		width;
 	int		height;
 }				t_texture;
@@ -69,11 +68,11 @@ typedef struct s_cub3d {
 	t_texture	textures[4];
 	int			floor_color;
 	int			ceiling_color;
+	double		last_rotation_time; //test
 }				t_cub3d;
 
 t_cub3d		*initialize_cub(void);
 int			set_coredata(t_cub3d *cub);
-void		init_render(t_cub3d *cub);
 
 /* render() - Responsible for managing overall rendering
  * - Draws the ceiling (C) and floor (F)
