@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 22:29:27 by shonakam          #+#    #+#             */
-/*   Updated: 2025/02/27 05:09:46 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/07 08:08:29 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 
 # include "ft_printf/ft_printf.h"
 # include "get_next_line/get_next_line.h"
+
+# define TRUE 1
+# define FALSE 0
 
 /* Part1 */
 int			ft_isalpha(int c);
@@ -65,5 +68,6 @@ int			ft_is_digit(char c);
 int			ft_is_whitespace(char c);
 long long	ft_atoll(const char *s);
 int			ft_is_plus_minus(char c);
+int			ft_rgbtoi(int r, int g, int b);
 
 #endif

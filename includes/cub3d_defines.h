@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_defines.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfukui <mfukui@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 02:36:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/01 21:23:10 by mfukui           ###   ########.fr       */
+/*   Updated: 2025/03/07 11:42:42 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@
 
 # define ERROR_MALLOC "Error\n Memory allocation failed.\n"
 
-#define NORTH 0
-#define SOUTH 1
-#define WEST 2
-#define EAST 3
+# define NORTH 0
+# define SOUTH 1
+# define WEST 2
+# define EAST 3
 
 #endif /* CUB3D_DEFINES_H */
