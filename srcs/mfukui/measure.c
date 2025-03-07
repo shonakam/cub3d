@@ -28,6 +28,8 @@ size_t map_width(char **txt)
         }
         i++;
     }
+    if (end - start > INT_MAX)
+        return (0);
     return (end - start);
 }
 
@@ -59,5 +61,7 @@ size_t map_height(char **txt)
         }
         i++;
     }
+    if (end - start > INT_MAX)
+        return (0);
     return (end - start);
 }
