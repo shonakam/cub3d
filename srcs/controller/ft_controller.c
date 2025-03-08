@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 08:16:42 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 12:03:33 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 13:01:34 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,18 @@ int	ft_controller(int key, void *param)
 	cub = (t_cub3d *)param;
 	if (key == KEY_ESC)
 		exit_cub(cub, "Escape key pressed, exiting...", 0);
-	else if (key == KEY_W || key == KEY_A || key == KEY_S || key == KEY_D)
-		cub->action = (t_action)move_player;
+	else if (key == KEY_W)
+		cub->action = move_forward;
+	else if (key == KEY_S)
+		cub->action = move_backward;
+	else if (key == KEY_A)
+		cub->action = move_left;
+	else if (key == KEY_D)
+		cub->action = move_right;
 	else if (key == KEY_RIGHT)
 		cub->action = rotate_right;
 	else if (key == KEY_LEFT)
 		cub->action = rotate_left;
 	return (0);
 }
+

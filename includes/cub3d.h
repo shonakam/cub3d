@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 12:11:36 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 13:00:37 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,10 @@ int			ft_controller(int key, void *param);
 
 void		rotate_right(t_cub3d *cub);
 void		rotate_left(t_cub3d *cub);
-void		move_player(t_cub3d *cub, int direction);
-
+void		move_forward(t_cub3d *cub);
+void		move_backward(t_cub3d *cub);
+void		move_left(t_cub3d *cub);
+void		move_right(t_cub3d *cub);
 
 /* render() - Responsible for managing overall rendering
 * - Draws the ceiling (C) and floor (F)
