@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:50:16 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/07 15:02:37 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:27:25 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void draw_wall(t_image *img, t_ray *ray, int x, t_texture textures[4])
 		y++;
 	}
 }
-
 
 void	draw_ceiling(t_image *img, t_cub3d *cub, int x, int start)
 {

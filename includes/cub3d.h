@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 10:43:44 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:11:36 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ typedef struct s_player {
 	t_vec_d	position;
 	t_vec_d	direction;
 	t_vec_d	plane;
-	double	movement_speed;
-	double	rotation_speed;
 }				t_player;
 
 typedef struct s_image {
@@ -58,7 +56,8 @@ typedef struct s_map {
 	size_t	start[3];
 }				t_map;
 
-typedef void (*t_action)(t_cub3d *, int);
+typedef struct s_cub3d t_cub3d;
+typedef void (*t_action)(t_cub3d *);
 
 /* texture[0-4] = N, S, W, E */
 typedef struct s_cub3d {
@@ -71,13 +70,24 @@ typedef struct s_cub3d {
 	t_texture	textures[4];
 	int			floor_color;
 	int			ceiling_color;
+	double		last_rotation_time;
+	int			last_key; 
 	t_minihash	keys;
 	t_action	action;
 }				t_cub3d;
 
 t_cub3d		*initialize_cub(void);
 int			set_coredata(t_cub3d *cub);
-void		run_cub3d(void *param);
+
+void		run_cub3d(t_cub3d *cub);
+int			key_press(int key, void *param);
+int			key_release(int key, void *param);
+int			ft_controller(int key, void *param);
+
+void		rotate_right(t_cub3d *cub);
+void		rotate_left(t_cub3d *cub);
+void		move_player(t_cub3d *cub, int direction);
+
 
 /* render() - Responsible for managing overall rendering
 * - Draws the ceiling (C) and floor (F)
@@ -88,8 +98,9 @@ void		run_cub3d(void *param);
 void		ft_render(t_cub3d *cub);
 
 void		free_cub(t_cub3d *cub);
-void	exit_cub(t_cub3d *cub, const char *message, int status);
+void		exit_cub(t_cub3d *cub, const char *message, int status);
 /* <=== SUPPORT ===> */
-int			validate_extension(const char *file);
+double		get_delta_time();
+void		d();
 
 #endif /* CUB3D_H */

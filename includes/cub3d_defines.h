@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 02:36:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 07:38:07 by mfukui           ###   ########.fr       */
+/*   Updated: 2025/03/08 11:58:08 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 # define WINDOW_WIDTH  800
 # define WINDOW_HEIGHT 600
-# define PLAYER_SPEED 0.1
-# define ROTATION_SPEED 0.05
+
+/* per second */
+# define BASE_MOVE_SPEED 0.1
+# define BASE_ROT_SPEED 90.0
 
 # define TEXTURE_NORTH "NO"
 # define TEXTURE_SOUTH "SO"
@@ -36,11 +38,10 @@
 # define MAP_PLAYER_WEST 'W'
 # define MAP_PLAYER_EAST 'E'
 
-# define ERROR_INVALID_FILE       "Error: Invalid .cub file format.\n"
-# define ERROR_INVALID_IDENTIFIER "Error: Unknown identifier in .cub file.\n"
-# define ERROR_INVALID_RGB        "Error: Invalid RGB color values. Must be in range 0-255.\n"
-
-# define ERROR_MALLOC "Error\n Memory allocation failed.\n"
+# define ERROR_INVALID_FILE       "Error: Invalid .cub file format."
+# define ERROR_INVALID_IDENTIFIER "Error: Unknown identifier in .cub file."
+# define ERROR_INVALID_RGB        "Error: Invalid RGB color values. Must be in range 0-255."
+# define ERROR_MALLOC "Error: Memory allocation failed."
 
 # define NORTH 0
 # define SOUTH 1

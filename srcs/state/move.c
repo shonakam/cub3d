@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 10:27:28 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 11:42:26 by shonakam         ###   ########.fr       */
+/*   Created: 2025/03/08 11:28:51 by shonakam          #+#    #+#             */
+/*   Updated: 2025/03/08 11:29:42 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_minihash.h"
+#include "includes/cub3d.h"
 
-int	hash_function(int key)
+void	move_player(t_cub3d *cub, int direction)
 {
-	return (key % DEFAULT_HASH_SIZE);
+	
 }
-
-// void	free_minihash(t_minihash *map)
-// {
-// 	int i; 
-
-// 	i = 0;
-// 	while (i < DEFAULT_HASH_SIZE)
-// 	{
-// 		if (map->table[i].value)
-// 			free(map->table[i].value);
-// 	}
-// }
