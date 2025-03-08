@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:06:31 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 08:52:39 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 09:32:07 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ void	free_cub(t_cub3d *cub)
 	while (i < cub->map.height)
 		free(cub->map.col[i++]);
 	free(cub->map.col);
-	for (int i = 0; i < 4; i++)
+	i = 0;
+	while (i < 4)
 	{
 		if (cub->textures[i].image.ptr)
 			mlx_destroy_image(cub->mlx, cub->textures[i].image.ptr);
 	}
+	mlx_destroy_window(cub->mlx, cub->win);
 	free(cub);
 }
 

@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 08:41:18 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 10:43:44 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <string.h>
+# include <limits.h>
 # include "libs/minilibx/mlx.h"
 # include "libs/libft/libft.h"
 # include "cub3d_defines.h"
@@ -57,6 +58,8 @@ typedef struct s_map {
 	size_t	start[3];
 }				t_map;
 
+typedef void (*t_action)(t_cub3d *, int);
+
 /* texture[0-4] = N, S, W, E */
 typedef struct s_cub3d {
 	void		*mlx;
@@ -68,10 +71,13 @@ typedef struct s_cub3d {
 	t_texture	textures[4];
 	int			floor_color;
 	int			ceiling_color;
+	t_minihash	keys;
+	t_action	action;
 }				t_cub3d;
 
 t_cub3d		*initialize_cub(void);
 int			set_coredata(t_cub3d *cub);
+void		run_cub3d(void *param);
 
 /* render() - Responsible for managing overall rendering
 * - Draws the ceiling (C) and floor (F)
@@ -82,6 +88,7 @@ int			set_coredata(t_cub3d *cub);
 void		ft_render(t_cub3d *cub);
 
 void		free_cub(t_cub3d *cub);
+void	exit_cub(t_cub3d *cub, const char *message, int status);
 /* <=== SUPPORT ===> */
 int			validate_extension(const char *file);
 

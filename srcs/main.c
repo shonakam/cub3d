@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:12:30 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/06 14:52:34 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 09:20:48 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,5 @@ int	main(int ac, char **av)
 	cub = initialize_cub();
 	if (!cub)
 		return (EXIT_FAILURE);
-	// if (!set_coredata(cub))
-	// 	return (EXIT_FAILURE);
-	// hadle_game(&cub);
 	return (EXIT_SUCCESS);
 }

@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   controller_internal.h                              :+:      :+:    :+:   */
+/*   controller.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 08:21:46 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 08:57:19 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 09:13:09 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTROLLER_INTERNAL_H
-# define CONTROLLER_INTERNAL_H
-
-# include "includes/cub3d.h"
+#ifndef CONTROLLER_H
+# define CONTROLLER_H
 
 # ifdef __APPLE__
 # define KEY_ESC 65307
@@ -40,4 +38,4 @@
 
 # endif
 
-#endif /* CONTROLLER_INTERNAL_H */
+#endif /* CONTROLLER_H */

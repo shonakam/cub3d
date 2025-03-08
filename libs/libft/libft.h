@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 22:29:27 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/07 08:08:29 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 10:13:11 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
+# include "ft_minihash/ft_minihash.h"
 # include "ft_printf/ft_printf.h"
 # include "get_next_line/get_next_line.h"
 
