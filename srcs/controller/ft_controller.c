@@ -6,14 +6,12 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 08:16:42 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 10:47:33 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 10:52:40 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 #include "includes/controller.h"
-
-void	setup_cub(t_cub3d *cub);
 
 int key_press(int key, void *param)
 {
@@ -45,17 +43,5 @@ int	ft_controller(int key, void *param)
 		cub->action = (t_action)move_player;
 	else if (key == KEY_LEFT || key == KEY_RIGHT)
 		cub->action = (t_action)rotate_player;
-	return (0);
-}
-
-int main(void)
-{
-	t_cub3d *cub = initialize_cub();
-
-	setup_cub(cub);
-	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
-
-	mlx_key_hook(cub->win, ft_controller, cub);
-	mlx_loop(cub->mlx);
 	return (0);
 }
