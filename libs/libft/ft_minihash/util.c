@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core_internal.h                                    :+:      :+:    :+:   */
+/*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 04:43:39 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 08:40:33 by shonakam         ###   ########.fr       */
+/*   Created: 2025/03/08 10:27:28 by shonakam          #+#    #+#             */
+/*   Updated: 2025/03/08 10:29:08 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CORE_INTERNAL_H
-# define CORE_INTERNAL_H
+#include "ft_minihash.h"
 
-# include "includes/cub3d.h"
+int	hash_function(int key)
+{
+	return (key % DEFAULT_HASH_SIZE);
+}
 
-void	setup_cub(t_cub3d *cub);
+void	free_minihash(t_minihash *map)
+{
+	int i; 
 
-#endif /* CORE_INTERNAL_H */
+	i = 0;
+	while (i < DEFAULT_HASH_SIZE)
+	{
+		if (map->table[i].value)
+			free(map->table[i].value);
+	}
+}

@@ -6,7 +6,7 @@
 #    By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/05 00:08:31 by shonakam          #+#    #+#              #
-#    Updated: 2025/03/07 13:03:59 by shonakam         ###   ########.fr        #
+#    Updated: 2025/03/08 08:42:36 by shonakam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ re: fclean all
 debug:
 	@$(CC) $(CFLAGS) -g -fsanitize=address $(OBJS) $(LIBS) $(X11_FLAGS) -o $(NAME)
 
-TEST := $(shell find srcs/display -type f -name "*.c") ./srcs/core/init.c
+TEST := $(shell find srcs/controller srcs/core -type f -name "*.c")
 test:
 	@$(MAKE) -C libs/libft
 	@$(MAKE) -C libs/minilibx
