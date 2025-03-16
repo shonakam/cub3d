@@ -93,6 +93,34 @@ int parse_color(t_cub3d *cub, char *line)
     return (0);
 }
 
+char	*join_n_free(char *s1, char *s2)
+{
+	size_t	i;
+	size_t	j;
+	char	*dst;
+
+	if (!s1)
+	{
+		if (!*s2)
+			return (NULL);
+		s1 = ft_substr("", 0, 1);
+	}
+	if (!s1 || !s2)
+		return (NULL);
+	dst = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!dst)
+		return (NULL);
+	i = -1;
+	while (s1[++i])
+		dst[i] = s1[i];
+	j = -1;
+	while (s2[++j])
+		dst[i + j] = s2[j];
+	dst[i + j] = '\0';
+	free(s1);
+	return (dst);
+}
+
 char	*remove_char(char *str, char c)
 {
 	int (i) = 0;
@@ -114,6 +142,28 @@ char	*remove_char(char *str, char c)
 	new_str[j] = '\0';
 	free(str);
 	return (new_str);
+}
+
+int	count_char(char **map, char c)
+{
+    int	num;
+    int	i;
+    int	j;
+
+    i = 0;
+    num = 0;
+    while (map[i])
+    {
+        j = 0;
+        while (map[i][j])
+        {
+            if (map[i][j] == c)
+                num++;
+            j++;
+        }
+        i++;
+    }
+    return (num);
 }
 
 int	check_map(t_cub3d *cub)
@@ -189,26 +239,4 @@ int	check_wall(t_cub3d *cub)
         i++;
     }
     return (0);
-}
-
-int	count_char(char **map, char c)
-{
-    int	num;
-    int	i;
-    int	j;
-
-    i = 0;
-    num = 0;
-    while (map[i])
-    {
-        j = 0;
-        while (map[i][j])
-        {
-            if (map[i][j] == c)
-                num++;
-            j++;
-        }
-        i++;
-    }
-    return (num);
 }
