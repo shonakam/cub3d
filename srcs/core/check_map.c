@@ -64,8 +64,8 @@ int	check_wall(t_cub3d *cub)
             }
             else if (cub->map.col[i][j] != '1' && cub->map.col[i][j] != ' ')
             {
-                if (cub->map.col[i + 1][j] == ' ' || cub->map.col[i][j + 1] == ' '
-                    || cub->map.col[i - 1][j] == ' ' || cub->map.col[i][j - 1] == ' ')
+                if (cub->map.col[i + 1][j] == ' ' || cub->map.col[i][j + 1] == ' ' ||
+                    cub->map.col[i - 1][j] == ' ' || cub->map.col[i][j - 1] == ' ')
                     return (printf("i = %d, j = %d\n", i, j));
             }
             j++;

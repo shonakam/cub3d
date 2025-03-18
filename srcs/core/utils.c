@@ -35,3 +35,30 @@ int create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
+char	*join_n_free(char *s1, char *s2)
+{
+	size_t	i;
+	size_t	j;
+	char	*dst;
+
+	if (!s1)
+	{
+		if (!*s2)
+			return (NULL);
+		s1 = ft_substr("", 0, 1);
+	}
+	if (!s1 || !s2)
+		return (NULL);
+	dst = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!dst)
+		return (NULL);
+	i = -1;
+	while (s1[++i])
+		dst[i] = s1[i];
+	j = -1;
+	while (s2[++j])
+		dst[i + j] = s2[j];
+	dst[i + j] = '\0';
+	free(s1);
+	return (dst);
+}

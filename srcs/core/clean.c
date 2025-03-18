@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include "core_internal.h"
 
 /* Free the map structure */
 void	free_map(t_map *map)
