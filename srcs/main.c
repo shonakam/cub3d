@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:12:30 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 11:51:20 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:51:31 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 void	d()
 {
 	printf("<=== DEBUG ===>\n");
+}
+
+void	print_map(t_cub3d *cub)
+{
+	int	i;
+
+	i = 0;
+	while (cub->map.col[i])
+	{
+		printf("%s\n", cub->map.col[i]);
+		i++;
+	}
 }
 
 static int	validate_extension(const char *file)
@@ -39,5 +51,9 @@ int	main(int ac, char **av)
 	cub = initialize_cub();
 	if (!cub)
 		return (ft_putendl_fd(ERROR_MALLOC, 2), EXIT_FAILURE);
+	// if (setup_cub(cub, av[1]))
+	// 	return (exit_cub(cub, EXIT_FAILURE, ERROR_FAILED_TO_SETUP_CUB));
+	if (set_coredata(cub, open(av[1], O_RDONLY)))
+		exit_cub(cub, "ERR.", EXIT_FAILURE);
 	run_cub3d(cub);
 }

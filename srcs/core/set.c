@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:07:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/05 04:10:36 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:38:15 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	set_coredata(t_cub3d *cub, int fd)
 {
-    char	*line;
-    char	*new_line;
+	char	*line;
+	char	*new_line;
 
     line = get_next_line(fd);
     while (line && (!parse_texture(cub, line) || !parse_color(cub, line)))
@@ -59,7 +59,7 @@ t_texture    *set_texture(t_cub3d *cub, char *path)
 
 int	parse_texture(t_cub3d *cub, char *line)
 {
-    char	*path;
+	char	*path;
 
     if (line[0] == '\n')
         return (0);
@@ -84,8 +84,8 @@ int	parse_texture(t_cub3d *cub, char *line)
 
 int parse_color(t_cub3d *cub, char *line)
 {
-    char	**rgb;
-    int		color;
+	char	**rgb;
+	int		color;
 
     if (ft_strnstr(line, "F ", 2) || ft_strnstr(line, "C ", 2))
         rgb = ft_split(line + 2, ',');

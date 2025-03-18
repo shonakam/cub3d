@@ -6,13 +6,12 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:28:51 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 15:06:27 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:33:50 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 
-// 衝突判定を行い、プレイヤーを移動させる
 static void	move_player(t_player *p, char **map, double delta_time, t_vec_d move)
 {
 	double	move_speed;

@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:53:18 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 12:19:20 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:04:56 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ t_cub3d		*initialize_cub(void)
 		free(cub);
 		return (NULL);
 	}
-	setup_cub(cub);
+	// setup_cub(cub);
 	return (cub);
 }

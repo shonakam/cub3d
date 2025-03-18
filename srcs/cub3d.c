@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 09:21:06 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 16:31:33 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:40:32 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	run_cub3d(t_cub3d *cub)
 	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	if (!cub->win)
 	{
-		ft_putendl_fd(stderr, "Error: Failed to create window.");
+		ft_putendl_fd("Error: Failed to create window.", 2);
 		exit(1);
 	}
 	mlx_hook(cub->win, 2, 1L << 0, key_press, cub);
