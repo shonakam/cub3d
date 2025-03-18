@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 13:00:37 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:22:44 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ typedef struct s_cub3d {
 	int			floor_color;
 	int			ceiling_color;
 	double		last_rotation_time;
-	int			last_key; 
+	int			last_key;
 	t_minihash	keys;
 	t_action	action;
 }				t_cub3d;
 
 t_cub3d		*initialize_cub(void);
-int			set_coredata(t_cub3d *cub);
+int			set_coredata(t_cub3d *cub, int fd);
 
 void		run_cub3d(t_cub3d *cub);
 int			key_press(int key, void *param);
