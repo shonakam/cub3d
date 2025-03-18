@@ -43,11 +43,8 @@ int	check_char(t_cub3d *cub)
 		}
 		i++;
 	}
-	int n = count_char(cub->map.col, 'N') + count_char(cub->map.col, 'W') + count_char(cub->map.col, 'E') + count_char(cub->map.col, 'S');
-	printf("n = %d\n", n);
 	if (count_char(cub->map.col, 'N') + count_char(cub->map.col, 'W') + count_char(cub->map.col, 'E') + count_char(cub->map.col, 'S') != 1)
 	{
-		d();
 		return (1);
 	}
 	return (0);
@@ -64,16 +61,16 @@ int	check_wall(t_cub3d *cub)
 		j = 0;
 		while (cub->map.col[i][j])
 		{
-			if (i == 0 || i == cub->map.height - 1 || j == 0
-				|| j == cub->map.width - 1)
+			if (i == 0 || i == cub->map.height - 1 ||
+				j == 0 || j == cub->map.width - 1)
 			{
 				if (cub->map.col[i][j] != '1' && cub->map.col[i][j] != ' ')
 					return (printf("i = %d, j = %d\n", i, j));
 			}
 			else if (cub->map.col[i][j] != '1' && cub->map.col[i][j] != ' ')
 			{
-				if (cub->map.col[i + 1][j] == ' ' || cub->map.col[i][j + 1] == ' ' ||
-					cub->map.col[i - 1][j] == ' ' || cub->map.col[i][j - 1] == ' ')
+				if (is_empty(cub->map.col[i + 1][j]) || is_empty(cub->map.col[i][j + 1]) ||
+					is_empty(cub->map.col[i - 1][j]) || is_empty(cub->map.col[i][j - 1]))
 					return (printf("i = %d, j = %d\n", i, j));
 			}
 			j++;

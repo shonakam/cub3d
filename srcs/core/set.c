@@ -12,16 +12,6 @@
 
 #include "core_internal.h"
 
-void	set_fov(t_player *player, double fov)
-{
-	double	plane_length;
-	double	fov_radians = (fov * M_PI) / 180.0;
-
-	plane_length = tan(fov_radians / 2);
-	player->plane.x = -player->direction.y * plane_length;
-	player->plane.y = player->direction.x * plane_length;
-}
-
 int	set_coredata(t_cub3d *cub, int fd)
 {
 	char	*line;
@@ -45,7 +35,7 @@ int	set_coredata(t_cub3d *cub, int fd)
 	cub->map.col = ft_split(line, '\n');
 	free(line);
 	if (check_map(cub))
-		return (1);
+		exit_cub(cub, "Invalid map.", EXIT_FAILURE);
 	set_player(&cub->player, cub->map.col);
 	set_fov(&cub->player, 60);
 	return (0);
@@ -66,57 +56,9 @@ void	set_texture(t_cub3d *cub, t_texture *tex, char *path)
 	tex->image.endian = endian;
 }
 
-int	parse_texture(t_cub3d *cub, char *line)
-{
-	char	*path;
-
-	if (line[0] == '\n')
-		return (0);
-	if (ft_strnstr(line, "NO ", 3) || ft_strnstr(line, "SO ", 3)
-		|| ft_strnstr(line, "WE ", 3) || ft_strnstr(line, "EA ", 3))
-		path = ft_strtrim(line + 3, "\n");
-	else
-		return (1);
-	if (!path)
-		exit_cub(cub, "Failed to allocate memory.", EXIT_FAILURE);
-	if (ft_strnstr(line, "NO ", 3))
-		set_texture(cub, &cub->textures[0], path);
-	else if (ft_strnstr(line, "SO ", 3))
-		set_texture(cub, &cub->textures[1], path);
-	else if (ft_strnstr(line, "WE ", 3))
-		set_texture(cub, &cub->textures[2], path);
-	else if (ft_strnstr(line, "EA ", 3))
-		set_texture(cub, &cub->textures[3], path);
-	free(path);
-	return (0);
-}
-
-int parse_color(t_cub3d *cub, char *line)
-{
-	char	**rgb;
-	int		color;
-
-	if (ft_strnstr(line, "F ", 2) || ft_strnstr(line, "C ", 2))
-		rgb = ft_split(line + 2, ',');
-	else
-		return (1);
-	if (!rgb)
-		exit_cub(cub, "Failed to allocate memory.", EXIT_FAILURE);
-	if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
-		exit_cub(cub, "Invalid color.", EXIT_FAILURE);
-	color = create_trgb(0, ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
-	if (ft_strnstr(line, "F ", 2))
-		cub->floor_color = color;
-	else
-		cub->ceiling_color = color;
-	free(rgb);
-	return (0);
-}
-
 int set_player(t_player *player, char **map)
 {
 	int x, y;
-	char direction;
 
 	y = 0;
 	while (map[y])
@@ -128,25 +70,17 @@ int set_player(t_player *player, char **map)
 			{
 				player->position.x = x + 0.5;
 				player->position.y = y + 0.5;
-
-				// プレイヤーの向きを取得 (書き換え前に保存)
-				direction = map[y][x];
-
-				// マップ上のプレイヤーの位置を通行可能にする
-				map[y][x] = '0';
-
-				// プレイヤーの向きを設定
 				player->direction.x = 0;
 				player->direction.y = 0;
-				if (direction == 'N')
+				if (map[y][x] == 'N')
 					player->direction.y = -1;
-				else if (direction == 'S')
+				else if (map[y][x] == 'S')
 					player->direction.y = 1;
-				else if (direction == 'W')
+				else if (map[y][x] == 'W')
 					player->direction.x = -1;
-				else if (direction == 'E')
+				else if (map[y][x] == 'E')
 					player->direction.x = 1;
-
+				map[y][x] = '0';
 				return (1);
 			}
 			x++;
@@ -156,3 +90,12 @@ int set_player(t_player *player, char **map)
 	return (0);
 }
 
+void	set_fov(t_player *player, double fov)
+{
+	double	plane_length;
+	double	fov_radians = (fov * M_PI) / 180.0;
+
+	plane_length = tan(fov_radians / 2);
+	player->plane.x = -player->direction.y * plane_length;
+	player->plane.y = player->direction.x * plane_length;
+}

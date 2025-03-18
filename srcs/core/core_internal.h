@@ -14,12 +14,16 @@
 # define CORE_INTERNAL_H
 
 # include <sys/time.h>
-# include "includes/cub3d.h"
+# include "../../includes/cub3d.h"
 
 int		set_coredata(t_cub3d *cub, int fd);
+int		set_player(t_player *player, char **map);
+int     set_texture(t_cub3d *cub, t_texture *tex, char *path);
+void	set_fov(t_player *player, double fov);
+
 int		parse_texture(t_cub3d *cub, char *line);
 int		parse_color(t_cub3d *cub, char *line);
-char	*join_n_free(char *s1, char *s2);
+int		create_trgb(int t, int r, int g, int b);
 
 int		check_map(t_cub3d *cub);
 int		check_char(t_cub3d *cub);
@@ -32,7 +36,7 @@ void	free_cub(t_cub3d *cub);
 void	exit_cub(t_cub3d *cub, const char *message, int status);
 
 double	get_delta_time(void);
-int		create_trgb(int t, int r, int g, int b);
-int		set_player(t_player *player, char **map);
+char	*join_n_free(char *s1, char *s2);
+int     is_empty(char c);
 
 #endif /* CORE_INTERNAL_H */
