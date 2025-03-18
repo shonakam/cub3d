@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:06:31 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 16:29:00 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 01:52:02 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	free_mlx(t_cub3d *cub)
 /* Free cub3d structure */
 void	free_cub(t_cub3d *cub)
 {
-	size_t	i;
-
 	if (!cub)
 		return ;
 	free_map(&cub->map);

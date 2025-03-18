@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 19:17:59 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 00:15:07 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_map {
 typedef struct s_cub3d t_cub3d;
 typedef void (*t_action)(t_cub3d *);
 
-/* texture[0-4] = N, S, W, E */
+/* texture[0-3] = N, S, W, E */
 typedef struct s_cub3d {
 	void		*mlx;
 	void		*win;

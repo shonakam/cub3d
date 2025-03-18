@@ -6,12 +6,12 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 09:21:06 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 17:40:32 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 01:57:02 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
-#include "includes/controller.h"
+#include "cub3d.h"
+#include "controller.h"
 
 int	process_game(void *param)
 {
