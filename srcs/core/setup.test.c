@@ -6,13 +6,13 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 08:32:29 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 12:19:47 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 19:00:27 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core_internal.h"
 
-void	set_texture(t_cub3d *cub)
+void	set_textures(t_cub3d *cub)
 {
 	char *n = "./assets/textures/north_texture.xpm";
 	char *s = "./assets/textures/south_texture.xpm";
@@ -84,6 +84,6 @@ void	setup_cub(t_cub3d *cub)
 	cub->floor_color = ft_rgbtoi(173, 216, 230);
 	cub->ceiling_color = ft_rgbtoi(0, 0, 0);
 	set_map(cub);
-	set_texture(cub);
+	set_textures(cub);
 	set_player(&cub->player);
 }

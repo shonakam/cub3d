@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:43:39 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 17:34:47 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 19:00:02 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ void	exit_cub(t_cub3d *cub, const char *message, int status);
 
 double	get_delta_time(void);
 int		create_trgb(int t, int r, int g, int b);
-char	*remove_char(char *str, char c);
 
 #endif /* CORE_INTERNAL_H */

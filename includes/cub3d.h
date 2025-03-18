@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 17:22:44 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:55:11 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_cub3d {
 
 t_cub3d		*initialize_cub(void);
 int			set_coredata(t_cub3d *cub, int fd);
+void		setup_cub(t_cub3d *cub);
 
 void		run_cub3d(t_cub3d *cub);
 int			key_press(int key, void *param);
