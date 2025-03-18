@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:05:28 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 17:36:31 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 21:58:10 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ char	*join_n_free(char *s1, char *s2)
 
 int	is_empty(char c)
 {
-		return (!c || c == ' ' || c == '0');
+		return (!c || c == ' ' );
 }
 

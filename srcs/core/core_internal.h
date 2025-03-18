@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:43:39 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 20:13:15 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 21:58:24 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int		set_coredata(t_cub3d *cub, int fd);
 int		set_player(t_player *player, char **map);
-int     set_texture(t_cub3d *cub, t_texture *tex, char *path);
+void     set_texture(t_cub3d *cub, t_texture *tex, char *path);
 void	set_fov(t_player *player, double fov);
 
 int		parse_texture(t_cub3d *cub, char *line);
