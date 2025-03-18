@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_player.c                                       :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 21:29:39 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 21:32:18 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 00:35:14 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core_internal.h"
+#include "../core_internal.h"
 
 static int	set_player_direction(t_player *player, char direction)
 {

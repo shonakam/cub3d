@@ -6,14 +6,14 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:44:55 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 14:42:07 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 02:03:13 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DISPLAY_INTERNAL_H
 # define DISPLAY_INTERNAL_H
 
-# include "includes/cub3d.h"
+# include "cub3d.h"
 
 typedef struct s_vec_i {
 	int	x;

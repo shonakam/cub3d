@@ -6,11 +6,11 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:12:30 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 20:10:45 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 01:56:55 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include "cub3d.h"
 
 void	d()
 {

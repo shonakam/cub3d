@@ -6,14 +6,15 @@
 #    By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/05 00:08:31 by shonakam          #+#    #+#              #
-#    Updated: 2025/03/08 11:27:08 by shonakam         ###   ########.fr        #
+#    Updated: 2025/03/19 02:00:09 by shonakam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
 CC ?= cc
-# CFLAGS := -Wall -Werror -Wextra
+CFLAGS := -Wall -Werror -Wextra -I./includes
+CFLAGS += -I/usr/include/X11
 X11_FLAGS := $(shell pkg-config --cflags --libs x11 xext)
 
 LIBS := libs/libft/libft.a
@@ -24,8 +25,8 @@ else
 endif
 
 OBJS_DIR := objs
-SRCS := $(shell find srcs -path "srcs/fukui" -prune -o -type f | grep '\.c$$')
-# SRCS := $(shell find srcs -type f | grep '\.c$$')
+# SRCS := $(shell find srcs -path "srcs/fukui" -prune -o -type f | grep '\.c$$')
+SRCS := $(shell find srcs -type f | grep '\.c$$')
 OBJS := $(SRCS:srcs/%.c=objs/%.o)
 
 all: $(NAME)
