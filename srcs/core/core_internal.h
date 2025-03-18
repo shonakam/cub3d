@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:43:39 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 17:26:11 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:34:47 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ void	free_map(t_map *map);
 void	free_mlx(t_cub3d *cub);
 void	free_cub(t_cub3d *cub);
 void	exit_cub(t_cub3d *cub, const char *message, int status);
-
-void	init_minihash_keys(t_minihash *keys);
-void	init_textures(t_texture *textures);
-void	init_cub_structure(t_cub3d *cub);
-t_cub3d	*allocate_cub(void);
-t_cub3d	*initialize_cub(void);
 
 double	get_delta_time(void);
 int		create_trgb(int t, int r, int g, int b);

@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:07:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 17:30:27 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:38:15 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	set_coredata(t_cub3d *cub, int fd)
 		if (!line)
 			exit_cub(cub, "Failed to allocate memory.", EXIT_FAILURE);
 	}
-	line = remove_char(line, '\r');
 	cub->map.col = ft_split(line, '\n');
 	free(line);
 	return (check_map(cub));
