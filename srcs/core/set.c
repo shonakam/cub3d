@@ -34,6 +34,7 @@ int	set_coredata(t_cub3d *cub, int fd)
 	}
 	cub->map.col = ft_split(line, '\n');
 	free(line);
+	set_player(cub->player, cub->map.col);
 	return (check_map(cub));
 }
 
@@ -44,9 +45,6 @@ t_texture	*set_texture(t_cub3d *cub, char *path)
 	int			line_length;
 	int			endian;
 
-	texture = (t_texture *)malloc(sizeof(t_texture));
-	if (!texture)
-		exit_cub(cub, "Failed to allocate memory.", EXIT_FAILURE);
 	texture->image.ptr = mlx_xpm_file_to_image(cub->mlx, path, &texture->width, &texture->height);
 	if (!texture->image.ptr)
 		exit_cub(cub, "Failed to load texture.", EXIT_FAILURE);
@@ -104,30 +102,34 @@ int parse_color(t_cub3d *cub, char *line)
 	return (0);
 }
 
-char	*join_n_free(char *s1, char *s2)
+int set_player(t_player player, char **map)
 {
-	size_t	i;
-	size_t	j;
-	char	*dst;
-
-	if (!s1)
+	int (x), (y) = 0;
+	while (map[y])
 	{
-		if (!*s2)
-			return (NULL);
-		s1 = ft_substr("", 0, 1);
+		x = 0;
+		while (map[y][x])
+		{
+			if (ft_strchr("NSWE", map[y][x]))
+			{
+				player.position.x = x + 0.5;
+				player.position.y = y + 0.5;
+				map[y][x] = '0';
+				return (1);
+			}
+			x++;
+		}
+		y++;
 	}
-	if (!s1 || !s2)
-		return (NULL);
-	dst = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!dst)
-		return (NULL);
-	i = -1;
-	while (s1[++i])
-		dst[i] = s1[i];
-	j = -1;
-	while (s2[++j])
-		dst[i + j] = s2[j];
-	dst[i + j] = '\0';
-	free(s1);
-	return (dst);
+	player.direction.x = 0;
+	player.direction.y = 0;
+	if (map[y][x] == 'N')
+		player.direction.y = -1;
+	else if (map[y][x] == 'S')
+		player.direction.y = 1;
+	else if (map[y][x] == 'W')
+		player.direction.x = -1;
+	else if (map[y][x] == 'E')
+		player.direction.x = 1;
+	return (0);
 }
