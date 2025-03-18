@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:58:10 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/07 14:32:20 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:45:39 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 static void	init_ray_base(t_cub3d *cub, t_ray *ray, int x)
 {
-	ray->screen_relative_x = (2.0 * x / (double)(WINDOW_WIDTH - 1)) - 1.0;
-	ray->direction.x = cub->player.direction.x + cub->player.plane.x * ray->screen_relative_x;
-	ray->direction.y = cub->player.direction.y + cub->player.plane.y * ray->screen_relative_x;
+	ray->screen_relative_x = (2.0 * x / (double)WINDOW_WIDTH) - 1.0;
 	ray->map.x = (int)cub->player.position.x;
 	ray->map.y = (int)cub->player.position.y;
-	ray->delta_distance.x = (ray->direction.x == 0) ? 1e30 : fmax(fabs(1 / ray->direction.x), 1e-6);
-	ray->delta_distance.y = (ray->direction.y == 0) ? 1e30 : fmax(fabs(1 / ray->direction.y), 1e-6);	
+	ray->pos = cub->player.position;
+	ray->direction.x = cub->player.direction.x + cub->player.plane.x * ray->screen_relative_x;
+	ray->direction.y = cub->player.direction.y + cub->player.plane.y * ray->screen_relative_x;
+	if (ray->direction.x == 0)
+		ray->delta_distance.x = 1e30;
+	else
+		ray->delta_distance.x = fmax(fabs(1 / ray->direction.x), 1e-6);
+	if (ray->direction.y == 0)
+		ray->delta_distance.y = 1e30;
+	else
+		ray->delta_distance.y = fmax(fabs(1 / ray->direction.y), 1e-6);
 	ray->hit = 0;
 }
 

@@ -6,43 +6,34 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:09:41 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/07 14:38:12 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:47:14 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "display_internal.h"
+#include "../display_internal.h"
 
-int	get_texture_pixel(t_texture *texture, int tex_x, int tex_y)
+// void	put_pixel_to_image(t_image *img, int x, int y, int color)
+// {
+// 	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
+// 		return ;
+// 	*(int *)(img->data + (y * img->line_length + x * (img->bpp / 8))) = color;
+// }
+
+int	get_texture_pixel(t_texture *texture, t_vec_i tex)
 {
 	char	*pixel;
 	int		color;
-	int		adjusted_x;
 
-	// **中央で左右が反転している場合、X座標を補正**
-	if (tex_x < texture->width / 2)
-		adjusted_x = texture->width / 2 - tex_x;
-	else
-		adjusted_x = texture->width - tex_x + texture->width / 2;
-
-	// CHEC
-	if (adjusted_x < 0 || adjusted_x > texture->width || tex_y < 0 || tex_y > texture->height)
-		return (0xFF00FF); // デバッグ用にマゼンタ
-
-	// **ピクセルデータのメモリアドレスを取得**
+	if (tex.x < 0 || tex.x >= texture->width || tex.y < 0 || tex.y >= texture->height)
+		return (0xFF00FF);
 	pixel = texture->image.data
-		+ (tex_y * texture->image.line_length)
-		+ (adjusted_x * (texture->image.bpp / 8));
-
-	// **エンディアンを考慮して色を取得**
-	if (texture->image.endian == 0)  // **リトルエンディアン (RGB)**
+		+ (tex.y * texture->image.line_length) + (tex.x * (texture->image.bpp / 8));
+	if (texture->image.endian == 0)
 		color = *(int *)pixel;
-	else  // **ビッグエンディアン (BGR)**
-		color = (pixel[2] << 16) | (pixel[1] << 8) | pixel[0];
-
+	else 
+		color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
 	return (color);
 }
-
-
 
 t_texture	*set_wall_texture(t_ray *ray, t_texture textures[4])
 {
