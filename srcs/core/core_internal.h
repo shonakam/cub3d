@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:43:39 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 21:42:15 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 21:57:08 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ typedef struct s_config
 void	set_fov(t_player *player, double fov);
 int		parse_texture(t_cub3d *cub, char *line);
 int		parse_color(t_cub3d *cub, char *line);
-char	*read_map_data(int fd, t_cub3d *cub);
-
+int		parse_config_line(t_cub3d *cub, t_config *config, char *line);
+int		detect_map_start(t_config *config, char *line);
+void	read_map_data(t_cub3d *cub, int fd, char *line);
 
 int		set_coredata(t_cub3d *cub, int fd);
 
