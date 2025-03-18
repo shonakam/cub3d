@@ -6,11 +6,21 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:07:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 18:59:49 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:35:10 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core_internal.h"
+
+void	set_fov(t_player *player, double fov)
+{
+	double	plane_length;
+	double	fov_radians = (fov * M_PI) / 180.0;
+
+	plane_length = tan(fov_radians / 2);
+	player->plane.x = -player->direction.y * plane_length;
+	player->plane.y = player->direction.x * plane_length;
+}
 
 int	set_coredata(t_cub3d *cub, int fd)
 {
@@ -34,25 +44,26 @@ int	set_coredata(t_cub3d *cub, int fd)
 	}
 	cub->map.col = ft_split(line, '\n');
 	free(line);
-	set_player(cub->player, cub->map.col);
-	return (check_map(cub));
+	if (check_map(cub))
+		return (1);
+	set_player(&cub->player, cub->map.col);
+	set_fov(&cub->player, 60);
+	return (0);
 }
 
-t_texture	*set_texture(t_cub3d *cub, char *path)
+void	set_texture(t_cub3d *cub, t_texture *tex, char *path)
 {
-	t_texture	*texture;
 	int			bpp;
 	int			line_length;
 	int			endian;
 
-	texture->image.ptr = mlx_xpm_file_to_image(cub->mlx, path, &texture->width, &texture->height);
-	if (!texture->image.ptr)
+	tex->image.ptr = mlx_xpm_file_to_image(cub->mlx, path, &tex->width, &tex->height);
+	if (!tex->image.ptr)
 		exit_cub(cub, "Failed to load texture.", EXIT_FAILURE);
-	texture->image.data = mlx_get_data_addr(texture->image.ptr, &bpp, &line_length, &endian);
-	texture->image.bpp = bpp;
-	texture->image.line_length = line_length;
-	texture->image.endian = endian;
-	return (texture);
+	tex->image.data = mlx_get_data_addr(tex->image.ptr, &bpp, &line_length, &endian);
+	tex->image.bpp = bpp;
+	tex->image.line_length = line_length;
+	tex->image.endian = endian;
 }
 
 int	parse_texture(t_cub3d *cub, char *line)
@@ -69,13 +80,13 @@ int	parse_texture(t_cub3d *cub, char *line)
 	if (!path)
 		exit_cub(cub, "Failed to allocate memory.", EXIT_FAILURE);
 	if (ft_strnstr(line, "NO ", 3))
-		cub->textures[0] = *set_texture(cub, path);
+		set_texture(cub, &cub->textures[0], path);
 	else if (ft_strnstr(line, "SO ", 3))
-		cub->textures[1] = *set_texture(cub, path);
+		set_texture(cub, &cub->textures[1], path);
 	else if (ft_strnstr(line, "WE ", 3))
-		cub->textures[2] = *set_texture(cub, path);
+		set_texture(cub, &cub->textures[2], path);
 	else if (ft_strnstr(line, "EA ", 3))
-		cub->textures[3] = *set_texture(cub, path);
+		set_texture(cub, &cub->textures[3], path);
 	free(path);
 	return (0);
 }
@@ -102,9 +113,12 @@ int parse_color(t_cub3d *cub, char *line)
 	return (0);
 }
 
-int set_player(t_player player, char **map)
+int set_player(t_player *player, char **map)
 {
-	int (x), (y) = 0;
+	int x, y;
+	char direction;
+
+	y = 0;
 	while (map[y])
 	{
 		x = 0;
@@ -112,24 +126,33 @@ int set_player(t_player player, char **map)
 		{
 			if (ft_strchr("NSWE", map[y][x]))
 			{
-				player.position.x = x + 0.5;
-				player.position.y = y + 0.5;
+				player->position.x = x + 0.5;
+				player->position.y = y + 0.5;
+
+				// プレイヤーの向きを取得 (書き換え前に保存)
+				direction = map[y][x];
+
+				// マップ上のプレイヤーの位置を通行可能にする
 				map[y][x] = '0';
+
+				// プレイヤーの向きを設定
+				player->direction.x = 0;
+				player->direction.y = 0;
+				if (direction == 'N')
+					player->direction.y = -1;
+				else if (direction == 'S')
+					player->direction.y = 1;
+				else if (direction == 'W')
+					player->direction.x = -1;
+				else if (direction == 'E')
+					player->direction.x = 1;
+
 				return (1);
 			}
 			x++;
 		}
 		y++;
 	}
-	player.direction.x = 0;
-	player.direction.y = 0;
-	if (map[y][x] == 'N')
-		player.direction.y = -1;
-	else if (map[y][x] == 'S')
-		player.direction.y = 1;
-	else if (map[y][x] == 'W')
-		player.direction.x = -1;
-	else if (map[y][x] == 'E')
-		player.direction.x = 1;
 	return (0);
 }
+

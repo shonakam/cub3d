@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:12:30 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 19:03:32 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:10:45 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,18 @@ void	print_map(t_cub3d *cub)
 	}
 }
 
-void	print_texture_path(t_cub3d *cub)
+// void	print_texture_path(t_cub3d *cub)
+// {
+// 	printf("NO: %s\n", cub->textures[0].image.ptr);
+// 	printf("SO: %s\n", cub->textures[1].image.ptr);
+// 	printf("WE: %s\n", cub->textures[2].image.ptr);
+// 	printf("EA: %s\n", cub->textures[3].image.ptr);
+// }
+
+void	print_player(t_cub3d *cub)
 {
-	printf("NO: %s\n", cub->textures[0].image.ptr);
-	printf("SO: %s\n", cub->textures[1].image.ptr);
-	printf("WE: %s\n", cub->textures[2].image.ptr);
-	printf("EA: %s\n", cub->textures[3].image.ptr);
+	printf("player position: %f, %f\n", cub->player.position.x, cub->player.position.y);
+	printf("player direction: %f, %f\n", cub->player.direction.x, cub->player.direction.y);
 }
 
 static int	validate_extension(const char *file)
@@ -59,9 +65,10 @@ int	main(int ac, char **av)
 	cub = initialize_cub();
 	if (!cub)
 		return (ft_putendl_fd(ERROR_MALLOC, 2), EXIT_FAILURE);
-	// setup_cub(cub);
 	if (set_coredata(cub, open(av[1], O_RDONLY)))
+	{
+		print_player(cub);
 		exit_cub(cub, "ERR.", EXIT_FAILURE);
-	print_texture_path(cub);
+	}
 	run_cub3d(cub);
 }
