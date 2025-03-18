@@ -18,8 +18,8 @@
 # include <unistd.h>
 # include <string.h>
 # include <limits.h>
-# include "libs/minilibx/mlx.h"
-# include "libs/libft/libft.h"
+# include "../libs/minilibx/mlx.h"
+# include "../libs/libft/libft.h"
 # include "cub3d_defines.h"
 
 /* coordinate */

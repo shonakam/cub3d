@@ -34,7 +34,7 @@ int	set_coredata(t_cub3d *cub, int fd)
 	}
 	cub->map.col = ft_split(line, '\n');
 	free(line);
-	set_player(cub->player, cub->map.col);
+	set_player(&cub->player, cub->map.col);
 	return (check_map(cub));
 }
 
@@ -102,7 +102,7 @@ int parse_color(t_cub3d *cub, char *line)
 	return (0);
 }
 
-int set_player(t_player player, char **map)
+int set_player(t_player *player, char **map)
 {
 	int (x), (y) = 0;
 	while (map[y])
@@ -112,8 +112,18 @@ int set_player(t_player player, char **map)
 		{
 			if (ft_strchr("NSWE", map[y][x]))
 			{
-				player.position.x = x + 0.5;
-				player.position.y = y + 0.5;
+				player->position.x = x + 0.5;
+				player->position.y = y + 0.5;
+				player->direction.x = 0;
+				player->direction.y = 0;
+				if (map[y][x] == 'N')
+					player->direction.y = -1;
+				else if (map[y][x] == 'S')
+					player->direction.y = 1;
+				else if (map[y][x] == 'W')
+					player->direction.x = -1;
+				else if (map[y][x] == 'E')
+					player->direction.x = 1;
 				map[y][x] = '0';
 				return (1);
 			}
@@ -121,15 +131,5 @@ int set_player(t_player player, char **map)
 		}
 		y++;
 	}
-	player.direction.x = 0;
-	player.direction.y = 0;
-	if (map[y][x] == 'N')
-		player.direction.y = -1;
-	else if (map[y][x] == 'S')
-		player.direction.y = 1;
-	else if (map[y][x] == 'W')
-		player.direction.x = -1;
-	else if (map[y][x] == 'E')
-		player.direction.x = 1;
 	return (0);
 }
