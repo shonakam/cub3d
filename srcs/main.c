@@ -6,11 +6,16 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:12:30 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 09:20:48 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:51:20 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
+
+void	d()
+{
+	printf("<=== DEBUG ===>\n");
+}
 
 static int	validate_extension(const char *file)
 {
@@ -30,9 +35,9 @@ int	main(int ac, char **av)
 
 	cub = NULL;
 	if (ac != 2 || !validate_extension(av[1]))
-		return (EXIT_FAILURE);
+		return (ft_putendl_fd(ERROR_INVALID_FILE, 2), EXIT_FAILURE);
 	cub = initialize_cub();
 	if (!cub)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+		return (ft_putendl_fd(ERROR_MALLOC, 2), EXIT_FAILURE);
+	run_cub3d(cub);
 }

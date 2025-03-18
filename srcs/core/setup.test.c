@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 08:32:29 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 08:45:50 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:19:47 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	set_player(t_player *player)
 
 void	setup_cub(t_cub3d *cub)
 {
-	cub->mlx = mlx_init();
 	cub->floor_color = ft_rgbtoi(173, 216, 230);
 	cub->ceiling_color = ft_rgbtoi(0, 0, 0);
 	set_map(cub);

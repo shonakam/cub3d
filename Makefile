@@ -6,7 +6,7 @@
 #    By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/05 00:08:31 by shonakam          #+#    #+#              #
-#    Updated: 2025/03/08 08:42:36 by shonakam         ###   ########.fr        #
+#    Updated: 2025/03/08 11:27:08 by shonakam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ else
 endif
 
 OBJS_DIR := objs
-SRCS := $(shell find srcs -type f | grep '\.c$$')
+SRCS := $(shell find srcs -path "srcs/fukui" -prune -o -type f | grep '\.c$$')
+# SRCS := $(shell find srcs -type f | grep '\.c$$')
 OBJS := $(SRCS:srcs/%.c=objs/%.o)
 
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 08:21:46 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 09:13:09 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:57:45 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,9 @@
 # define KEY_DOWN XK_Down
 
 # endif
+
+int	key_press(int key, void *param);
+int	key_release(int key, void *param);
+int	ft_controller(int key, void *param);
 
 #endif /* CONTROLLER_H */

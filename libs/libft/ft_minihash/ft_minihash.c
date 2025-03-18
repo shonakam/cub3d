@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 10:01:35 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 10:31:44 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:42:55 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_minihash(t_minihash *map)
 	}
 }
 
-void	minihash_set(t_minihash *map, int key, void *value)
+void	minihash_set(t_minihash *map, int key, int value)
 {
 	int	index;
 	int	i;
@@ -46,7 +46,7 @@ void	minihash_set(t_minihash *map, int key, void *value)
 	}
 }
 
-void	*minihash_get(t_minihash *map, int key)
+int	minihash_get(t_minihash *map, int key)
 {
 	int	index;
 	int	i;

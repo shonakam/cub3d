@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 04:06:27 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/07 13:16:19 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:27:37 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	ft_render(t_cub3d *cub)
 		draw_floor(&img, cub, x, end);
 		x++;
 	}
-
 	mlx_put_image_to_window(cub->mlx, cub->win, img.ptr, 0, 0);
 	mlx_destroy_image(cub->mlx, img.ptr);
 }
