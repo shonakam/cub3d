@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 02:36:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 13:03:41 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 02:40:15 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define WEST 2
 # define EAST 3
 
-#define MAP_MAX_WIDTH 200
-#define MAP_MAX_HEIGHT 200
+#define MAP_MAX_WIDTH 150
+#define MAP_MAX_HEIGHT 100
 
 #endif /* CUB3D_DEFINES_H */
