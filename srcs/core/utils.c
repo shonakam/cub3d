@@ -30,11 +30,6 @@ double	get_delta_time()
 	return (delta_time);
 }
 
-int create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
 char	*join_n_free(char *s1, char *s2)
 {
 	size_t	i;
@@ -62,3 +57,9 @@ char	*join_n_free(char *s1, char *s2)
 	free(s1);
 	return (dst);
 }
+
+int	is_empty(char c)
+{
+		return (!c || c == ' ' || c == '0');
+}
+
