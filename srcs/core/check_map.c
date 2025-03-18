@@ -47,7 +47,6 @@ int	check_char(t_cub3d *cub)
 	printf("n = %d\n", n);
 	if (count_char(cub->map.col, 'N') + count_char(cub->map.col, 'W') + count_char(cub->map.col, 'E') + count_char(cub->map.col, 'S') != 1)
 	{
-		d();
 		return (1);
 	}
 	return (0);
