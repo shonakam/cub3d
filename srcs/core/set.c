@@ -32,10 +32,29 @@ int	set_coredata(t_cub3d *cub, int fd)
         if (!line)
             exit_cub(cub, "Failed to allocate memory.", EXIT_FAILURE);
     }
-    line = remove_char(line, '\r');
     cub->map.col = ft_split(line, '\n');
     free(line);
     return (check_map(cub));
+}
+
+t_texture    *set_texture(t_cub3d *cub, char *path)
+{
+    t_texture	*texture;
+    int			bpp;
+    int			line_length;
+    int			endian;
+
+    texture = (t_texture *)malloc(sizeof(t_texture));
+    if (!texture)
+        exit_cub(cub, "Failed to allocate memory.", EXIT_FAILURE);
+    texture->image.ptr = mlx_xpm_file_to_image(cub->mlx, path, &texture->width, &texture->height);
+    if (!texture->image.ptr)
+        exit_cub(cub, "Failed to load texture.", EXIT_FAILURE);
+    texture->image.data = mlx_get_data_addr(texture->image.ptr, &bpp, &line_length, &endian);
+    texture->image.bpp = bpp;
+    texture->image.line_length = line_length;
+    texture->image.endian = endian;
+    return (texture);
 }
 
 int	parse_texture(t_cub3d *cub, char *line)
@@ -52,13 +71,13 @@ int	parse_texture(t_cub3d *cub, char *line)
     if (!path)
         exit_cub(cub, "Failed to allocate memory.", EXIT_FAILURE);
     if (ft_strnstr(line, "NO ", 3))
-        cub->textures[0].image.ptr = mlx_xpm_file_to_image(cub->mlx, path, &cub->textures[0].width, &cub->textures[0].height);
+        cub->textures[0] = *set_texture(cub, path);
     else if (ft_strnstr(line, "SO ", 3))
-        cub->textures[1].image.ptr = mlx_xpm_file_to_image(cub->mlx, path, &cub->textures[1].width, &cub->textures[1].height);
+        cub->textures[1] = *set_texture(cub, path);
     else if (ft_strnstr(line, "WE ", 3))
-        cub->textures[2].image.ptr = mlx_xpm_file_to_image(cub->mlx, path, &cub->textures[2].width, &cub->textures[2].height);
+        cub->textures[2] = *set_texture(cub, path);
     else if (ft_strnstr(line, "EA ", 3))
-        cub->textures[3].image.ptr = mlx_xpm_file_to_image(cub->mlx, path, &cub->textures[3].width, &cub->textures[3].height);
+        cub->textures[3] = *set_texture(cub, path);
     free(path);
     return (0);
 }
