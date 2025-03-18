@@ -74,7 +74,7 @@ int parse_color(t_cub3d *cub, char *line)
         return (1);
     if (!rgb)
         exit_cub(cub, "Failed to allocate memory.", EXIT_FAILURE);
-    if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3] || !is_number(rgb[0]) || !is_number(rgb[1]) || !is_number(rgb[2]))
+    if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
         exit_cub(cub, "Invalid color.", EXIT_FAILURE);
     color = create_trgb(0, ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
     if (ft_strnstr(line, "F ", 2))
