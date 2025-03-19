@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:07:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 01:53:46 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 10:47:09 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	set_coredata(t_cub3d *cub, int fd)
 		}
 		else
 		{
-			set_map_data(cub, fd, line);
+			if (set_map_data(cub, fd, line))
+				return (1);
+			set_player(&cub->player, cub->map.col);
+			set_fov(&cub->player, 60);
 			return (0);
 		}
 		free(line);

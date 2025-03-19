@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:43:39 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 01:49:14 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:06:29 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ typedef struct s_config
 /* <=== CONFIG ===> */
 int		check_wall(t_cub3d *cub);
 int		check_char(t_cub3d *cub);
+int		check_size(t_cub3d *cub);
 int		check_map(t_cub3d *cub);
 void	set_fov(t_player *player, double fov);
-int		set_player(t_player *player, char **map);
+void	set_player(t_player *player, char **map);
 int		set_texture(t_cub3d *cub, t_texture *tex, char *path);
 
 int		detect_map_start(t_config *config);

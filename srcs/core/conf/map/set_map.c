@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   set_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 00:00:43 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 01:30:45 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 10:52:58 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../core_internal.h"
+
+
 
 int	set_map_data(t_cub3d *cub, int fd, char *line)
 {
@@ -29,7 +31,5 @@ int	set_map_data(t_cub3d *cub, int fd, char *line)
 	free(line);
 	if (check_map(cub))
 		return (exit_cub(cub, ERR_MAP, EXIT_FAILURE), 1);
-	set_player(&cub->player, cub->map.col);
-	set_fov(&cub->player, 60);
 	return (0);
 }

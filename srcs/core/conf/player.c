@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 21:29:39 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 00:35:14 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 10:46:27 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	set_player_direction(t_player *player, char direction)
 	return (1);
 }
 
-int	set_player(t_player *player, char **map)
+void	set_player(t_player *player, char **map)
 {
 	int		x;
 	int		y;
@@ -45,11 +45,11 @@ int	set_player(t_player *player, char **map)
 				player->position.y = y + 0.5;
 				direction = map[y][x];
 				map[y][x] = '0';
-				return (set_player_direction(player, direction));
+				set_player_direction(player, direction);
+				break ;
 			}
 			x++;
 		}
 		y++;
 	}
-	return (0);
 }

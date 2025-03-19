@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_size.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 01:09:22 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 10:55:11 by shonakam         ###   ########.fr       */
+/*   Created: 2025/03/19 10:53:57 by shonakam          #+#    #+#             */
+/*   Updated: 2025/03/19 11:06:48 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../core_internal.h"
 
-int	check_map(t_cub3d *cub)
+int	check_size(t_cub3d *cub)
 {
-	size_t len;
+	size_t	x;
 
-	cub->map.width = 0;
-	cub->map.height = 0;
-	while (cub->map.col[cub->map.height])
+	x = 0;
+	while (cub->map.col[x])
 	{
-		len = ft_strlen(cub->map.col[cub->map.height]);
-		if (len > cub->map.width)
-			cub->map.width = len;
-		cub->map.height++;
+		if (ft_strlen(cub->map.col[x]) > MAP_MAX_WIDTH)
+		{
+			printf("Error: Invalid map size at line %zu\n", x);
+			return (1);
+		}
+		if (x > MAP_MAX_HEIGHT)
+		{
+			printf("Error: Invalid map size. Too many lines.\n");
+			return (1);
+		}
+		x++;
 	}
-	if (check_char(cub) || check_wall(cub) || check_size(cub))
-		return (1);
 	return (0);
 }
