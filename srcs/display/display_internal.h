@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:44:55 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 11:22:17 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:48:56 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct s_vec_i {
 	int	x;
-	int y;
+	int	y;
 }				t_vec_i;
 
 typedef struct s_ray {

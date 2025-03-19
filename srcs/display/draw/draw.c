@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:50:16 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 11:31:51 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:00:08 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	draw_wall(t_image *img, t_ray *ray, int x, t_texture textures[4])
 	t_wall_render	wall;
 	int				y;
 
-	wall.line_height = (int)(WINDOW_HEIGHT / fmax(ray->wall_hit_distance, 0.1));
+	wall.line_height
+		= (int)(WINDOW_HEIGHT / fmax(ray->wall_hit_distance, 0.1));
 	wall.draw_start = -wall.line_height / 2 + WINDOW_HEIGHT / 2;
 	wall.draw_end = wall.line_height / 2 + WINDOW_HEIGHT / 2;
 	wall.wall_texture = set_wall_texture(ray, textures);
@@ -47,7 +48,8 @@ void	draw_wall(t_image *img, t_ray *ray, int x, t_texture textures[4])
 	y = wall.draw_start;
 	while (y < wall.draw_end)
 	{
-		wall.tex.y = ((y - wall.draw_start) * wall.wall_texture->height) / wall.line_height;
+		wall.tex.y = ((y - wall.draw_start) * wall.wall_texture->height)
+			/ wall.line_height;
 		if (wall.tex.y < 0 || wall.tex.y >= wall.tex_height)
 			continue ;
 		wall.color = get_texture_pixel(wall.wall_texture, wall.tex);
@@ -58,7 +60,7 @@ void	draw_wall(t_image *img, t_ray *ray, int x, t_texture textures[4])
 
 void	draw_ceiling(t_image *img, t_cub3d *cub, int x, int start)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (y < start)

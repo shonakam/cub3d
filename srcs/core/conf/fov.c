@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 21:22:40 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 00:36:47 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 19:01:04 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	set_fov(t_player *player, double fov)
 	double	plane_length;
 	double	fov_radians;
 
-	fov_radians = (fov * M_PI) / 180.0;
+	fov_radians = (fov * get_pi()) / 180.0;
 	plane_length = tan(fov_radians / 2);
 	player->plane.x = -player->direction.y * plane_length;
 	player->plane.y = player->direction.x * plane_length;

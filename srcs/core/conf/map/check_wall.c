@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 01:31:17 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 01:53:19 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:47:43 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,3 @@ int	check_wall(t_cub3d *cub)
 	}
 	return (0);
 }
-

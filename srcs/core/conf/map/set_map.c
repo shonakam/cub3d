@@ -6,13 +6,11 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 00:00:43 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 10:52:58 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:48:04 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../core_internal.h"
-
-
 
 int	set_map_data(t_cub3d *cub, int fd, char *line)
 {

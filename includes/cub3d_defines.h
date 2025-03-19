@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 02:36:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 11:15:45 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:16:25 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@
 
 # define ERROR_INVALID_FILE       "Error: Invalid .cub file format."
 # define ERROR_INVALID_IDENTIFIER "Error: Unknown identifier in .cub file."
-# define ERROR_INVALID_RGB        "Error: Invalid RGB color values. Must be in range 0-255."
 # define ERROR_MALLOC "Error: Memory allocation failed."
 
 # define NORTH 0
@@ -49,7 +48,7 @@
 # define WEST 2
 # define EAST 3
 
-#define MAP_MAX_WIDTH 150
-#define MAP_MAX_HEIGHT 100
+# define MAP_MAX_WIDTH 150
+# define MAP_MAX_HEIGHT 100
 
 #endif /* CUB3D_DEFINES_H */

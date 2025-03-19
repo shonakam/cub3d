@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:06:31 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 01:52:02 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:30:00 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_map(t_map *map)
 
 	if (!map || !map->col)
 		return ;
-	i =0;
+	i = 0;
 	while (i < map->height)
 	{
 		if (map->col[i])
@@ -34,10 +34,8 @@ void	free_map(t_map *map)
 void	free_mlx(t_cub3d *cub)
 {
 	if (!cub || !cub->mlx)
-		return;
-	#ifdef __linux__
+		return ;
 	mlx_destroy_display(cub->mlx);
-	#endif
 	free(cub->mlx);
 	cub->mlx = NULL;
 }
@@ -67,5 +65,3 @@ void	exit_cub(t_cub3d *cub, const char *message, int status)
 	free_cub(cub);
 	exit(status);
 }
-
-

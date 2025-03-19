@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 01:32:07 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 01:39:14 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:39:31 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 static int	is_valid_map_char(char c)
 {
-	return (c == '1' || c == '0' || c == 'N' || c == 'W' || c == 'E'
-			|| c == 'S' || c == ' ');
+	return (c == '1'
+		|| c == '0' || c == 'N' || c == 'W'
+		|| c == 'E' || c == 'S' || c == ' ');
 }
 
 static int	count_char(char **map, char c)
 {
-	int num;
-	int i;
-	int j;
+	int	num;
+	int	i;
+	int	j;
 
 	i = 0;
 	num = 0;
@@ -42,8 +43,10 @@ static int	count_char(char **map, char c)
 
 static int	count_players(char **map)
 {
-	return (count_char(map, 'N') + count_char(map, 'W')
-			+ count_char(map, 'E') + count_char(map, 'S'));
+	return (count_char(map, 'N')
+		+ count_char(map, 'W')
+		+ count_char(map, 'E')
+		+ count_char(map, 'S'));
 }
 
 int	check_char(t_cub3d *cub)
@@ -71,4 +74,3 @@ int	check_char(t_cub3d *cub)
 		return (1);
 	return (0);
 }
-

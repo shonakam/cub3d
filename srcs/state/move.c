@@ -6,13 +6,14 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:28:51 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 11:17:05 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:18:19 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	move_player(t_player *p, char **map, double delta_time, t_vec_d move)
+static void	move_player(
+		t_player *p, char **map, double delta_time, t_vec_d move)
 {
 	double	move_speed;
 	t_vec_d	new;
@@ -64,5 +65,3 @@ void	move_right(t_cub3d *cub)
 	move_vec.y = cub->player.plane.y;
 	move_player(&cub->player, cub->map.col, get_delta_time(), move_vec);
 }
-
-

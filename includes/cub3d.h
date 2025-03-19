@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 11:16:45 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 18:27:42 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "cub3d_defines.h"
 
 /* coordinate */
-typedef struct s_vec_d	{
+typedef struct s_vec_d {
 	double	x;
 	double	y;
 }				t_vec_d;
@@ -56,8 +56,7 @@ typedef struct s_map {
 	size_t	start[3];
 }				t_map;
 
-typedef struct s_cub3d t_cub3d;
-typedef void (*t_action)(t_cub3d *);
+typedef struct s_cub3d	t_cub3d;
 
 /* texture[0-3] = N, S, W, E */
 typedef struct s_cub3d {
@@ -73,19 +72,18 @@ typedef struct s_cub3d {
 	double		last_rotation_time;
 	int			last_key;
 	t_minihash	keys;
-	t_action	action;
+	void		(*action)(t_cub3d *);
 }				t_cub3d;
 
-void	d();
 t_cub3d		*initialize_cub(void);
 int			set_coredata(t_cub3d *cub, int fd);
-// void		setup_cub(t_cub3d *cub);
 
 void		run_cub3d(t_cub3d *cub);
 int			key_press(int key, void *param);
 int			key_release(int key, void *param);
 int			ft_controller(int key, void *param);
 
+double		get_pi(void);
 void		rotate_right(t_cub3d *cub);
 void		rotate_left(t_cub3d *cub);
 int			is_collision(double x, double y, char **map);
@@ -105,7 +103,7 @@ void		ft_render(t_cub3d *cub);
 void		free_cub(t_cub3d *cub);
 void		exit_cub(t_cub3d *cub, const char *message, int status);
 /* <=== SUPPORT ===> */
-double		get_delta_time();
-void		d();
+double		get_delta_time(void);
+void		d(void);
 
 #endif /* CUB3D_H */

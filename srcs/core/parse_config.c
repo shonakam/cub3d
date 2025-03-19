@@ -6,15 +6,36 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 00:01:08 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 01:29:20 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 19:02:22 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core_internal.h"
 
-static int create_trgb(int t, int r, int g, int b)
+static int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+static char	*build_path(char *line)
+{
+	size_t	len;
+	char	*tmp;
+	int		i;
+	int		j;
+
+	len = ft_strlen(line);
+	if (len > 0 && line[len - 1] == '\n')
+		line[len - 1] = '\0';
+	tmp = malloc(sizeof(char) * (len - 3 + 1));
+	if (!tmp)
+		return (NULL);
+	i = 3;
+	j = 0;
+	while (line[i])
+		tmp[j++] = line[i++];
+	tmp[j] = '\0';
+	return (tmp);
 }
 
 static int	parse_texture(t_cub3d *cub, t_config *conf, char *line)
@@ -25,7 +46,7 @@ static int	parse_texture(t_cub3d *cub, t_config *conf, char *line)
 		return (0);
 	if (ft_strnstr(line, "NO ", 3) || ft_strnstr(line, "SO ", 3)
 		|| ft_strnstr(line, "WE ", 3) || ft_strnstr(line, "EA ", 3))
-		path = ft_strtrim(line + 3, "\n");
+		path = build_path(line);
 	else
 		return (1);
 	if (!path)
@@ -38,7 +59,7 @@ static int	parse_texture(t_cub3d *cub, t_config *conf, char *line)
 		conf->we_set = set_texture(cub, &cub->textures[2], path);
 	else if (ft_strnstr(line, "EA ", 3))
 		conf->ea_set = set_texture(cub, &cub->textures[3], path);
-	free(path);
+	// free(path);
 	return (0);
 }
 
@@ -76,4 +97,3 @@ int	parse_config(t_cub3d *cub, t_config *config, char *line)
 	parse_color(cub, config, line);
 	return (0);
 }
-

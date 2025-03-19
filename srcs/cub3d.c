@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 09:21:06 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 01:57:02 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:28:05 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	process_game(void *param)
 
 	cub = (t_cub3d *)param;
 	if (!cub)
-		return (0); 
+		return (0);
 	if (cub->last_key)
 	{
 		ft_controller(cub->last_key, cub);

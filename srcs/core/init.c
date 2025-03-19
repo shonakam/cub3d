@@ -6,28 +6,32 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:53:18 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/18 17:04:56 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:32:38 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core_internal.h"
 
-static void init_minihash_keys(t_minihash *keys)
+static void	init_minihash_keys(t_minihash *keys)
 {
 	*keys = (t_minihash){0};
 	init_minihash(keys);
 }
 
-static void init_textures(t_texture *textures)
+static void	init_textures(t_texture *textures)
 {
-	for (int i = 0; i < 4; i++)
+	int	i;
+
+	i = 0;
+	while (i < 4)
 	{
 		textures[i].image.ptr = NULL;
 		textures[i].image.data = NULL;
+		i++;
 	}
 }
 
-static void init_cub_structure(t_cub3d *cub)
+static void	init_cub_structure(t_cub3d *cub)
 {
 	cub->mlx = NULL;
 	cub->win = NULL;
@@ -41,19 +45,21 @@ static void init_cub_structure(t_cub3d *cub)
 	init_textures(cub->textures);
 }
 
-static t_cub3d *allocate_cub(void)
+static t_cub3d	*allocate_cub(void)
 {
-	t_cub3d *cub = malloc(sizeof(t_cub3d));
+	t_cub3d	*cub;
+
+	cub = malloc(sizeof(t_cub3d));
 	if (!cub)
 	{
 		perror("Error: Failed to allocate memory for cub3d\n");
 		return (NULL);
 	}
 	init_cub_structure(cub);
-	return cub;
+	return (cub);
 }
 
-t_cub3d		*initialize_cub(void)
+t_cub3d	*initialize_cub(void)
 {
 	t_cub3d	*cub;
 
@@ -67,6 +73,5 @@ t_cub3d		*initialize_cub(void)
 		free(cub);
 		return (NULL);
 	}
-	// setup_cub(cub);
 	return (cub);
 }

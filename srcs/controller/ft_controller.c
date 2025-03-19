@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 08:16:42 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 01:58:02 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:28:50 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,3 @@ int	ft_controller(int key, void *param)
 		cub->action = rotate_left;
 	return (0);
 }
-

@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 01:09:22 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 10:55:11 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:39:44 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_map(t_cub3d *cub)
 {
-	size_t len;
+	size_t	len;
 
 	cub->map.width = 0;
 	cub->map.height = 0;
