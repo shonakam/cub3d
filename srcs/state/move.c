@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:28:51 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 01:57:09 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:17:05 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	move_player(t_player *p, char **map, double delta_time, t_vec_d move
 	move_speed = BASE_MOVE_SPEED * delta_time;
 	new.x = p->position.x + move.x * move_speed;
 	new.y = p->position.y + move.y * move_speed;
-	if (map[(int)new.y][(int)new.x] != '1')
+	if (!is_collision(new.x, new.y, map))
 	{
 		p->position.x = new.x;
 		p->position.y = new.y;

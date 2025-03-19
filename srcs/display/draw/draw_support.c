@@ -6,18 +6,11 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:09:41 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 14:47:14 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:25:58 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../display_internal.h"
-
-// void	put_pixel_to_image(t_image *img, int x, int y, int color)
-// {
-// 	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
-// 		return ;
-// 	*(int *)(img->data + (y * img->line_length + x * (img->bpp / 8))) = color;
-// }
 
 int	get_texture_pixel(t_texture *texture, t_vec_i tex)
 {
@@ -80,8 +73,3 @@ int	calculate_texture_x(t_ray *ray, t_wall_render *wall)
 		texture_x = texture_width - 1;
 	return (texture_x);
 }
-
-
-
-
-

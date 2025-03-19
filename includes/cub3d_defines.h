@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 02:36:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 02:40:15 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:15:45 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define WINDOW_HEIGHT 600
 
 /* per second */
+# define RADIUS 0.2
 # define BASE_MOVE_SPEED 2.0
 # define BASE_ROT_SPEED 90.0
 

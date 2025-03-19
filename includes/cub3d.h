@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 01:42:32 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 00:15:07 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:16:45 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_cub3d {
 void	d();
 t_cub3d		*initialize_cub(void);
 int			set_coredata(t_cub3d *cub, int fd);
-void		setup_cub(t_cub3d *cub);
+// void		setup_cub(t_cub3d *cub);
 
 void		run_cub3d(t_cub3d *cub);
 int			key_press(int key, void *param);
@@ -88,6 +88,7 @@ int			ft_controller(int key, void *param);
 
 void		rotate_right(t_cub3d *cub);
 void		rotate_left(t_cub3d *cub);
+int			is_collision(double x, double y, char **map);
 void		move_forward(t_cub3d *cub);
 void		move_backward(t_cub3d *cub);
 void		move_left(t_cub3d *cub);

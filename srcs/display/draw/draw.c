@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:50:16 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/08 14:58:19 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:31:51 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@ void	put_pixel_to_image(t_image *img, int x, int y, int color)
 	*(int *)(img->data + (y * img->line_length + x * (img->bpp / 8))) = color;
 }
 
+static double	calculate_wall_hit_x(t_ray *ray)
+{
+	double	wall_hit_x;
+
+	if (ray->side == 0)
+		wall_hit_x = ray->pos.y + ray->wall_hit_distance * ray->direction.y;
+	else
+		wall_hit_x = ray->pos.x + ray->wall_hit_distance * ray->direction.x;
+	wall_hit_x -= floor(wall_hit_x);
+	return (wall_hit_x);
+}
+
 void	draw_wall(t_image *img, t_ray *ray, int x, t_texture textures[4])
 {
 	t_wall_render	wall;
@@ -27,18 +39,11 @@ void	draw_wall(t_image *img, t_ray *ray, int x, t_texture textures[4])
 	wall.line_height = (int)(WINDOW_HEIGHT / fmax(ray->wall_hit_distance, 0.1));
 	wall.draw_start = -wall.line_height / 2 + WINDOW_HEIGHT / 2;
 	wall.draw_end = wall.line_height / 2 + WINDOW_HEIGHT / 2;
-
 	wall.wall_texture = set_wall_texture(ray, textures);
 	wall.tex.x = calculate_texture_x(ray, &wall);
-	wall.wall_hit_x = (ray->side == 0)
-		? ray->pos.y + ray->wall_hit_distance * ray->direction.y : ray->pos.x + ray->wall_hit_distance * ray->direction.x;
-	wall.wall_hit_x -= floor(wall.wall_hit_x);
+	wall.wall_hit_x = calculate_wall_hit_x(ray);
 	wall.tex.x = (int)(wall.wall_hit_x * wall.wall_texture->width);
-
-	if ((ray->side == 0 && ray->direction.x > 0) || (ray->side == 1 && ray->direction.y < 0))
-		wall.tex.x = wall.wall_texture->width - wall.tex.x - 1;
 	wall.tex_height = wall.wall_texture->height;
-
 	y = wall.draw_start;
 	while (y < wall.draw_end)
 	{
