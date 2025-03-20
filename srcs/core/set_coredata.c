@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 04:07:44 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 10:47:09 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:03:49 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	set_coredata(t_cub3d *cub, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
+		ft_rm_newline(line);
 		if (!config.map_started)
 		{
 			parse_config(cub, &config, line);

@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:50:16 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 14:00:08 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 21:36:10 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	draw_wall(t_image *img, t_ray *ray, int x, t_texture textures[4])
 			/ wall.line_height;
 		if (wall.tex.y < 0 || wall.tex.y >= wall.tex_height)
 			continue ;
-		wall.color = get_texture_pixel(wall.wall_texture, wall.tex);
+		wall.color = get_texture_pixel(wall.wall_texture, wall.tex, ray);
 		put_pixel_to_image(img, x, y, wall.color);
 		y++;
 	}

@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:44:55 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 13:48:56 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 21:35:46 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_wall_render {
 void		draw_wall(t_image *img, t_ray *ray, int x, t_texture textures[4]);
 void		draw_ceiling(t_image *img, t_cub3d *cub, int x, int start);
 void		draw_floor(t_image *img, t_cub3d *cub, int x, int end);
-int			get_texture_pixel(t_texture *texture, t_vec_i tex);
+int			get_texture_pixel(t_texture *texture, t_vec_i tex, t_ray *ray);
 t_texture	*set_wall_texture(t_ray *ray, t_texture textures[4]);
 void		clamp_wall_draw_range(t_wall_render *wall);
 int			calculate_texture_x(t_ray *ray, t_wall_render *wall);

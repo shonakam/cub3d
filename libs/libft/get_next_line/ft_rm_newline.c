@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_rm_newline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 15:58:05 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/20 15:00:51 by shonakam         ###   ########.fr       */
+/*   Created: 2025/03/20 15:00:06 by shonakam          #+#    #+#             */
+/*   Updated: 2025/03/20 15:02:57 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
 
-# include "../libft.h"
+void	ft_rm_newline(char *line)
+{
+	size_t	i;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
-
-char	*get_next_line(int fd);
-void	ft_rm_newline(char *line);
-
-#endif
-
+	if (!line)
+		return ;
+	i = ft_strlen(line);
+	if (line[i - 1] == '\n')
+		line[i - 1] = '\0';
+}

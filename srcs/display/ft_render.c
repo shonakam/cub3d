@@ -6,7 +6,7 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 04:06:27 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 13:56:56 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/20 20:35:49 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	set_start(const double whd)
 {
 	int	result;
 
-	result = (int)(WINDOW_HEIGHT / whd) / 2 + WINDOW_HEIGHT / 2;
-	return (-result);
+	result = -(int)(WINDOW_HEIGHT / whd) / 2 + WINDOW_HEIGHT / 2;
+	return (result);
 }
 
 static int	set_end(const double whd)

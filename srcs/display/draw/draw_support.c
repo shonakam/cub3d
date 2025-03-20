@@ -6,13 +6,13 @@
 /*   By: shonakam <shonakam@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:09:41 by shonakam          #+#    #+#             */
-/*   Updated: 2025/03/19 14:03:12 by shonakam         ###   ########.fr       */
+/*   Updated: 2025/03/19 21:35:31 by shonakam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../display_internal.h"
 
-int	get_texture_pixel(t_texture *texture, t_vec_i tex)
+int	get_texture_pixel(t_texture *texture, t_vec_i tex, t_ray *ray)
 {
 	char	*pixel;
 	int		color;
@@ -20,6 +20,8 @@ int	get_texture_pixel(t_texture *texture, t_vec_i tex)
 	if (tex.x < 0 || tex.x >= texture->width
 		|| tex.y < 0 || tex.y >= texture->height)
 		return (0xFF00FF);
+	if (ray->side == 1 && ray->step.y > 0)
+		tex.x = texture->width - tex.x - 1;
 	pixel = texture->image.data
 		+ (tex.y * texture->image.line_length)
 		+ (tex.x * (texture->image.bpp / 8));
@@ -71,13 +73,6 @@ int	calculate_texture_x(t_ray *ray, t_wall_render *wall)
 	else
 		hit_position = ray->map.x + ray->wall_hit_distance * ray->direction.x;
 	hit_position -= floor(hit_position);
-	if ((ray->side == 0 && ray->direction.x > 0)
-		|| (ray->side == 1 && ray->direction.y < 0))
-		hit_position = 1.0 - hit_position;
 	texture_x = (int)(hit_position * texture_width);
-	if (texture_x < 0)
-		texture_x = 0;
-	if (texture_x >= texture_width)
-		texture_x = texture_width - 1;
 	return (texture_x);
 }
